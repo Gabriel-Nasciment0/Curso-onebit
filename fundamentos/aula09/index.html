@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tabelas</title>
-</head>
-<body>
-    
-</body>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>tabelas</title>
+    </head>
+    <body>
+        <h1>Criando tabelas no html</h1>
+        <table>
+            <tr>
+                <th>Coluna 1</th>
+                <th>Coluna 2</th>
+            </tr>
+            <tr>
+                <td>dado 1</td>
+                <td>dado 2</td>
+            </tr>
+            <tr>
+                <td>dado 3</td>
+                <td>dado 4</td>
+            </tr>
+        </table>
+        <hr />
+        <h1>tabelas com cabeçalho</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Profissão</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jõao</td>
+                    <td>30</td>
+                    <td>engenheiro</td>
+                </tr>
+                <tr>
+                    <td>Mária</td>
+                    <td>25</td>
+                    <td>Advogada</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <h1>tabela com celulas personalizadas</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th colspan="2">Informações pessoais</th>
+                    <th>Contato</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>Nome:</td>
+                        <td>Joao</td>
+                        <td rowspan="2">Telefone: 12346789</td>
+                    </tr>
+                    <tr>
+                        <td>Idade:</td>
+                        <td>30</td>
+                    </tr>
+                </tbody>
+            </thead>
+        </table>
+    </body>
 </html>
