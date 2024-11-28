@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    display: inline-block;
+    width: 30%;
+    height: 200px;
+    margin: 5px;
+    padding: 2%;
+    background: #000;
+    color: #fff;
+}
+.selected {
+    border: 2px solid #0000ff;
+    background: #000000d7;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}

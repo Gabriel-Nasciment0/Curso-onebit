@@ -25,6 +25,33 @@ nav > a {
 .verde {
     color: #77ae60;
 }
-#secao-principal{
-    
+#secao-principal {
+    padding: 20px;
+    text-align: center;
+}
+#secao-principal > * {
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}
+
+input + input {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+h2 + p {
+    padding: 30px;
+}
+
+/* seletores de propriedade */
+input[name="email"] {
+    background-color: #f5a623;
+}
+
+input[type="password"] {
+    background-color: #27ae60;
 }
