@@ -1,0 +1,30 @@
+/* seletor universal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header,
+footer {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+}
+nav a {
+    color: #77ae60;
+}
+nav > a {
+    display: block;
+    padding: 10px;
+    color: #f5a623;
+}
+
+.laranja {
+    color: #f5a623;
+}
+.verde {
+    color: #77ae60;
+}
+#secao-principal{
+    
+}
