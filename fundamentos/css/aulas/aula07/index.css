@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: #232323;
+    color: #fff;
+    padding: 10px;
+}
+.box {
+    border: 1px solid #232323;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 75px;
+}
+/* pixels */
+.px {
+    height: 10px;
+}
+/* root element */
+.rem {
+    height: 3rem;
+}
+
+.em {
+    font-size: 20px;
+    padding: 1em;
+}
