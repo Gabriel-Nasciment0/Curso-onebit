@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.header__nav {
+    background: #000;
+    padding: 1rem 40%;
+}
+.header__nav ul li {
+    display: inline-block;
+    text-align: center;
+}
+.header__nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #fff;
+}
+.header__nav a:hover {
+    cursor: pointer;
+    color: #ffff00;
+}
+.header__section {
+    width: 100%;
+    height: 700px;
+    background: url(img/img03.jpg) no-repeat top;
+    object-fit: cover;
+    color: #fff;
+}
+.header__section-text {
+    text-align: center;
+    padding: 15rem 0;
+}
+.header__section-text h1 {
+    font-size: 3rem;
+    font-weight: 400;
+}
+.header__section-text p {
+    padding: 1rem 0;
+    font-weight: 600;
+}
+.header__section-text button {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: none;
+    background: #ffa500;
+}
+.header__section-text button a {
+    text-decoration: none;
+    font-weight: 700;
+}
+.main h1 {
+    text-align: center;
+    padding: 2% 0;
+}
+.main__section-cardapio {
+    padding: 0 3rem;
+    width: 100%;
+}
+.main__section__box-card {
+    display: inline-block;
+    width: 29%;
+    height: 400px;
+    margin: 2rem;
+    border-radius: 20px;
+    background: #ccc;
+}
+.main__section__box-card .img {
+    height: 60%;
+    background: url(img/img02.jpg) no-repeat center;
+    object-fit: contain;
+}
+.main__section__box-card .text {
+    padding: 0 2%;
+}
+.main__section__box-card .text h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+}
+.main__section__box-card .text p {
+    font-size: 1rem;
+    padding: 0 15px;
+}
+.main__section-sobre {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: url(img/img01.jpg) no-repeat center;
+    object-fit: cover;
+    text-align: center;
+    color: #fff;
+}
+.main__section-sobre h1 {
+    font-size: 3rem;
+}
+.main__section-sobre p {
+    font-size: 20px;
+}
+.main__section-sobre .text {
+    position: absolute;
+    top: 5%;
+    left: 25%;
+}
+.main__section-sobre .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(rgba(24, 24, 24, 0.2), rgba(0, 0, 0, 0.3));
+    width: 100%;
+    height: 100%;
+}
+.main__section-contato {
+    padding: 0 7%;
+}
+.main__section-contato h1 {
+    font-size: 3rem;
+}
+.main__section-contato > p {
+    text-align: center;
+    padding: 10px 0;
+}
+.main__section-contato .contato {
+    width: 100%;
+}
+.main__section-contato .box {
+    padding-top: 30px;
+    width: 30%;
+    display: inline-block;
+}
+.main__section-contato .box a {
+    color: #ffa500;
+}
+.main__section-contato .box span {
+    font-weight: 700;
+}
+.main__section-contato button {
+    display: block;
+    margin: 30px auto;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    background: #ffa500;
+    border: none;
+    cursor: pointer;
+}
+footer {
+    background: #000;
+    color: #ffa500;
+    text-align: center;
+    padding: 1.5%;
+}
