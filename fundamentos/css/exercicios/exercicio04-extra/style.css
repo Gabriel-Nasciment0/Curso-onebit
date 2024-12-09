@@ -158,3 +158,98 @@ footer {
     text-align: center;
     padding: 1.5%;
 }
+/* responsivo */
+/* Estilo para dispositivos pequenos, como smartphones */
+@media (max-width: 768px) {
+    .header__nav {
+        padding: 1rem 5%;
+    }
+
+    .header__nav ul li {
+        display: block;
+        margin: 5px 0;
+        text-align: left;
+    }
+
+    .header__section {
+        height: 500px;
+    }
+
+    .header__section-text h1 {
+        font-size: 2rem;
+    }
+
+    .header__section-text p {
+        font-size: 1rem;
+    }
+
+    .header__section-text button {
+        padding: 0.5rem 1rem;
+    }
+
+    .main__section__box-card {
+        display: block;
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    .main__section__box-card .text h2 {
+        font-size: 1.2rem;
+    }
+
+    .main__section__box-card .text p {
+        font-size: 0.9rem;
+    }
+
+    .main__section-sobre .text {
+        left: 5%;
+        top: 10%;
+        text-align: left;
+    }
+
+    .main__section-sobre h1 {
+        font-size: 2rem;
+    }
+
+    .main__section-contato .box {
+        width: 90%;
+        display: block;
+        margin: 20px auto;
+    }
+
+    .main__section-contato h1 {
+        font-size: 2rem;
+    }
+
+    .main__section-contato > p {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+/* Estilo para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header__nav {
+        padding: 1rem 10%;
+    }
+
+    .main__section__box-card {
+        width: 45%;
+        margin: 2rem auto;
+    }
+
+    .main__section-contato .box {
+        width: 45%;
+    }
+
+    .main__section-sobre h1 {
+        font-size: 2.5rem;
+    }
+
+    .main__section-contato h1 {
+        font-size: 2.5rem;
+    }
+}
