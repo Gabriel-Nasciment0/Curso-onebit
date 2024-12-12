@@ -1,57 +1,65 @@
-const medida = parseFloat(
-    prompt("Digite um número para realizar a conversão:")
-);
+const nomeTurista = prompt("Qual é o nome do turista?");
 
-var conversor = prompt(
-    "Escolha a unidade de medida: mm (milímetros), cm (centímetros), dm (decímetros), dam (decâmetros), hm (hectômetros), km (quilômetros)"
-).toLowerCase();
-var resultado = 0;
+// Armazenar cidades
+let cidade01 = "";
+let cidade02 = "";
+let cidade03 = "";
+let cidade04 = "";
+let cidade05 = "";
 
-switch (conversor) {
-    case "mm":
-        resultado = medida * 1000;
-        alert(
-            `A conversão de ${medida} metro(s) para milímetros (mm) é: ${resultado} mm.`
-        );
-        break;
+// Variáveis auxiliares
+let contador = 0;
+let resposta = "sim";
 
-    case "cm":
-        resultado = medida * 100;
-        alert(
-            `A conversão de ${medida} metro(s) para centímetros (cm) é: ${resultado} cm.`
-        );
-        break;
+// Loop de pergunta
+while (resposta.toLowerCase() === "sim" && contador < 5) {
+    resposta = prompt("Você visitou alguma cidade? (sim/não)");
 
-    case "dm":
-        resultado = medida * 10;
-        alert(
-            `A conversão de ${medida} metro(s) para decímetros (dm) é: ${resultado} dm.`
-        );
-        break;
+    // Armazena a cidade
+    if (resposta.toLowerCase() === "sim") {
+        const cidade = prompt("Qual cidade você visitou?");
+        if (contador === 0) {
+            cidade01 = cidade;
+        } else if (contador === 1) {
+            cidade02 = cidade;
+        } else if (contador === 2) {
+            cidade03 = cidade;
+        } else if (contador === 3) {
+            cidade04 = cidade;
+        } else if (contador === 4) {
+            cidade05 = cidade;
+        }
+        contador++;
+    }
+}
 
-    case "dam":
-        resultado = medida / 10;
-        alert(
-            `A conversão de ${medida} metro(s) para decâmetros (dam) é: ${resultado} dam.`
-        );
-        break;
+// Organiza as cidades visitadas
+let cidadesVisitadas = "";
+if (cidade01) cidadesVisitadas += cidade01 + ", ";
+if (cidade02) cidadesVisitadas += cidade02 + ", ";
+if (cidade03) cidadesVisitadas += cidade03 + ", ";
+if (cidade04) cidadesVisitadas += cidade04 + ", ";
+if (cidade05) cidadesVisitadas += cidade05;
 
-    case "hm":
-        resultado = medida / 100;
-        alert(
-            `A conversão de ${medida} metro(s) para hectômetros (hm) é: ${resultado} hm.`
-        );
-        break;
+// Remover vírgula extra no final da lista
+cidadesVisitadas = cidadesVisitadas.slice(0, -2);
 
-    case "km":
-        resultado = medida / 1000;
-        alert(
-            `A conversão de ${medida} metro(s) para quilômetros (km) é: ${resultado} km.`
-        );
-        break;
+// Exibe as informações do turista
+if (contador === 0) {
+    alert(`
+    Olá, ${nomeTurista}!
+    
+    Você não visitou nenhuma cidade ainda. Não se preocupe, há muitas oportunidades por aí! 😊
+    `);
+} else {
+    alert(`
+    Olá, ${nomeTurista}! 🌍
 
-    default:
-        alert(
-            "Unidade não reconhecida. Por favor, insira uma unidade válida (mm, cm, dm, dam, hm, km)."
-        );
+    Você visitou ${contador} cidade(s) até agora! 🎉
+    
+    Aqui estão as cidades que você conheceu:
+    ${cidadesVisitadas}
+
+    Continue explorando o mundo e aproveite cada viagem! ✈️
+    `);
 }

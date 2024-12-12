@@ -1,30 +1,57 @@
-const veiculo01 = prompt("Qual é o primeiro veículo:");
-const velocidade01 = parseFloat(
-    prompt("Qual é a velocidade do primeiro veículo (em KM/H):")
+const medida = parseFloat(
+    prompt("Digite um número para realizar a conversão:")
 );
 
-const veiculo02 = prompt("Qual é o segundo veículo:");
-const velocidade02 = parseFloat(
-    prompt("Qual é a velocidade do segundo veículo (em KM/H):")
-);
+var conversor = prompt(
+    "Escolha a unidade de medida: mm (milímetros), cm (centímetros), dm (decímetros), dam (decâmetros), hm (hectômetros), km (quilômetros)"
+).toLowerCase();
+var resultado = 0;
 
-// Verificação de entrada inválida
-if (isNaN(velocidade01) || isNaN(velocidade02)) {
-    alert(
-        "ERRO: Por favor, insira valores numéricos válidos para as velocidades."
-    );
-} else {
-    if (velocidade01 > velocidade02) {
+switch (conversor) {
+    case "mm":
+        resultado = medida * 1000;
         alert(
-            `O ${veiculo01} é mais rápido (${velocidade01} KM/H) que o ${veiculo02} (${velocidade02} KM/H).`
+            `A conversão de ${medida} metro(s) para milímetros (mm) é: ${resultado} mm.`
         );
-    } else if (velocidade01 < velocidade02) {
+        break;
+
+    case "cm":
+        resultado = medida * 100;
         alert(
-            `O ${veiculo02} é mais rápido (${velocidade02} KM/H) que o ${veiculo01} (${velocidade01} KM/H).`
+            `A conversão de ${medida} metro(s) para centímetros (cm) é: ${resultado} cm.`
         );
-    } else {
+        break;
+
+    case "dm":
+        resultado = medida * 10;
         alert(
-            `O ${veiculo01} e o ${veiculo02} têm a mesma velocidade (${velocidade01} KM/H).`
+            `A conversão de ${medida} metro(s) para decímetros (dm) é: ${resultado} dm.`
         );
-    }
+        break;
+
+    case "dam":
+        resultado = medida / 10;
+        alert(
+            `A conversão de ${medida} metro(s) para decâmetros (dam) é: ${resultado} dam.`
+        );
+        break;
+
+    case "hm":
+        resultado = medida / 100;
+        alert(
+            `A conversão de ${medida} metro(s) para hectômetros (hm) é: ${resultado} hm.`
+        );
+        break;
+
+    case "km":
+        resultado = medida / 1000;
+        alert(
+            `A conversão de ${medida} metro(s) para quilômetros (km) é: ${resultado} km.`
+        );
+        break;
+
+    default:
+        alert(
+            "Unidade não reconhecida. Por favor, insira uma unidade válida (mm, cm, dm, dam, hm, km)."
+        );
 }
