@@ -27,3 +27,21 @@ function areaQuadrada(lado) {
 console.log(areaRetangular(3, 5));
 
 console.log(areaQuadrada(9));
+
+function olaMundo() {
+    let texto = "...";
+    texto = "Olá, mundo!";
+    return texto;
+    console.log(texto);
+}
+console.log(olaMundo());
+
+function maioridade(idade) {
+    if (idade >= 18) {
+        return "Maior de idade";
+    } else {
+        return "Menor de idade";
+    }
+}
+console.log(maioridade(20));
+console.log(maioridade(13));
