@@ -32,7 +32,7 @@ const orcs = personagens.filter(function (personagem) {
 });
 console.log(orcs);
 
-//reduce:
+//reduce: reduz o array em um outro valor
 //i -> 2 -> 3
 const nivelTotal = personagens.reduce(function (valorAcumulado, personagem) {
     return valorAcumulado + personagem.nivel;
@@ -48,3 +48,13 @@ const racas = personagens.reduce(function (valorAcumulado, personagem) {
     return valorAcumulado;
 }, {});
 console.log(racas);
+//sort:
+
+personagens.sort(function (a, b) {
+    return a.nivel - b.nivel;
+});
+console.log(personagens);
+const personagensOrdenados = personagens.slice().sort(function (a, b) {
+    return b.nivel - a.nivel;
+});
+console.log(personagensOrdenados);
