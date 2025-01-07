@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>escalação de times</h1>
+
+        <label for="posicao">Informar posição:</label>
+        <input type="text" name="posicao" id="posicao" />
+        <br />
+        <br />
+        <label for="nome">Informar Nome:</label>
+        <input type="text" name="nome" id="nome" />
+        <br />
+        <br />
+        <label for="camisa">Informar Numero da Camisa:</label>
+        <input type="text" name="camisa" id="camisa" />
+        <br />
+        <br />
+        <button onclick="addJogador()">Adicionar</button>
+        <button onclick="removeJogador()">Remover</button>
+
+        <section id="jogador-list"></section>
+
+        <script src="index.js"></script>
+    </body>
+</html>
