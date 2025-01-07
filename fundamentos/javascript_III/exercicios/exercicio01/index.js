@@ -5,19 +5,27 @@ function addJogador() {
     const posicao = document.getElementById("posicao").value;
     const nome = document.getElementById("nome").value;
     const camisa = document.getElementById("camisa").value;
-    //tags criadas
-    const jogadorDiv = document.createElement("div");
-    jogadorDiv.classList.add("jogador");
 
-    //inserir textos
-    jogadorDiv.innerHTML = `
-    <p>Posição:${posicao}</p>
-    <p>Nome:${nome}</p>
-    <p>Camisa:${camisa}</p>
+    const confirmation = confirm(`escalar ${nome} como ${posicao}?`);
+
+    if (confirmation) {
+        //tags criadas
+        const jogadorDiv = document.createElement("ul");
+        jogadorDiv.classList.add("jogador");
+
+        //inserir textos
+        jogadorDiv.innerHTML = `
+    <li>Posição:${posicao}</li>
+    <li>Nome:${nome}</li>
+    <li>Camisa:${camisa}</li>
     <br>
     `;
-    //adicionar a adiv a seção
-    sectionList.appendChild(jogadorDiv);
+        //adicionar a adiv a seção
+        sectionList.appendChild(jogadorDiv);
+        document.getElementById("posicao").value = "";
+        document.getElementById("nome").value = "";
+        document.getElementById("camisa").value = "";
+    }
 }
 
 function removeJogador() {

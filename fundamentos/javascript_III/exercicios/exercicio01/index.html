@@ -6,24 +6,28 @@
         <title>Document</title>
     </head>
     <body>
-        <h1>escalação de times</h1>
+        <main>
+            <section>
+                <h1>escalação de times</h1>
 
-        <label for="posicao">Informar posição:</label>
-        <input type="text" name="posicao" id="posicao" />
-        <br />
-        <br />
-        <label for="nome">Informar Nome:</label>
-        <input type="text" name="nome" id="nome" />
-        <br />
-        <br />
-        <label for="camisa">Informar Numero da Camisa:</label>
-        <input type="text" name="camisa" id="camisa" />
-        <br />
-        <br />
-        <button onclick="addJogador()">Adicionar</button>
-        <button onclick="removeJogador()">Remover</button>
+                <label for="posicao">Informar posição:</label>
+                <input type="text" name="posicao" id="posicao" />
+                <br />
+                <br />
+                <label for="nome">Informar Nome:</label>
+                <input type="text" name="nome" id="nome" />
+                <br />
+                <br />
+                <label for="camisa">Informar Numero da Camisa:</label>
+                <input type="text" name="camisa" id="camisa" />
+                <br />
+                <br />
+                <button onclick="addJogador()">Adicionar</button>
+                <button onclick="removeJogador()">Remover</button>
+            </section>
 
-        <section id="jogador-list"></section>
+            <section id="jogador-list"></section>
+        </main>
 
         <script src="index.js"></script>
     </body>
