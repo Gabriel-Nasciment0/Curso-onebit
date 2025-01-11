@@ -82,7 +82,10 @@ add.addEventListener("click", function (e) {
 
         // Exibe os dados na tela
         const divDevsInfo = document.createElement("div");
-        divDevsInfo.textContent = `Nome: ${name}, Tecnologia: ${respostaTecnologia}, Experiência: ${respostaExperiencia}`;
+        divDevsInfo.textContent = `
+            Nome: ${name},
+            Tecnologia: ${respostaTecnologia}, 
+            Experiência: ${respostaExperiencia}`;
         divDevs.append(divDevsInfo);
 
         // Limpa os campos do formulário
