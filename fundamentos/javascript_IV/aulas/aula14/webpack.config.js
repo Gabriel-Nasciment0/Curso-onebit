@@ -1,13 +1,17 @@
-const path = require("path");
-module.exports = {
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+export default {
     entry: {
-        main: "./src/index.js",
-        hello: "./src/hello.js",
+        index: "./src/index.js",
     },
-    mode: "production",
-    output: {
-        path: path.resolve(__dirname, "public"),
-        filename: "[name].bundle.min.js",
-        filename: "[name].bundle.min.js",
+    mode: "development",
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+            },
+        ],
     },
+    plugins: [new MiniCssExtractPlugin()],
 };
