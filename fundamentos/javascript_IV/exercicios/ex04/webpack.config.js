@@ -3,8 +3,8 @@ module.exports = {
     devServer: {
         static: {
             directory: path.resolve(__dirname, "dist"),
-            
         },
+        port: 8080,
     },
     entry: {
         index: "./src/index.js",
