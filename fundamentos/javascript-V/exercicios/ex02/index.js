@@ -1,11 +1,13 @@
-class Author {
-    constructor(name) {
-        this.name = name;
-        this.posts = [];
-    }
-    
-}
+const Author = require("./author");
+const Post = require("./post");
 
+const jhon = new Author("Jhon");
+
+const post1 = jhon.writePost("Titulo", "comentario");
+post1.addComent("user1", "coment 1");
+post1.addComent("user2", "coment 2");
+console.log(jhon);
+console.log(post1);
 //  Simulando um Blog com Classes Crie uma aplicação javascript que simule um
 // funcionamento básico de blog utilizando classes e associações. Você deverá criar
 // uma classe Post e uma classe Comment, onde uma instância de Post poderá receber
