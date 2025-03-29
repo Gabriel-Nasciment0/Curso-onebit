@@ -9,4 +9,3 @@ export class Label extends Component {
         );
     }
 }
-L
