@@ -56,15 +56,44 @@ class warrior extends character {
         this.posicao = posicao;
     }
 
-   if (posicao = "ataque") {
-        atacar(oponente) {
-        let dano = this.ataque - oponente.defesa;
-        if (dano < 0) {
-            dano = 0;
+    atacar(oponente) {
+        if (posicao === "ataque") {
+            let dano = this.ataque - oponente.defesa;
+            if (dano < 0) {
+                dano = 0;
+            }
+            oponente.vida -= dano;
+        } else {
+            console.log("Você não pode atacar em modo de defesa");
         }
-        oponente.vida -= dano;
+    }
+
+    mudarPosicao() {
+        if (this.posicao === "ataque") {
+            this.posicao = "defesa";
+            this.defesa += this.escudo;
+        } else {
+            this.posicao = "ataque";
+            this.defesa -= this.escudo;
+        }
     }
 }
-   
 
-}
+// Exemplo de uso
+
+const arthur = new mage("Arthur", 90, 4, 2, 14);
+const beatrice = new thief("beatrice", 140, 22, 8);
+const cain = new warrior("cain", 200, 14, 12, 4);
+
+console.table({ arthur, beatrice, cain });
+cain.mudarPosicao();
+arthur.atacar(cain);
+beatrice.atacar(arthur);
+
+console.table({ arthur, beatrice, cain });
+cain.mudarPosicao();
+cain.atacar(arthur);
+arthur.cura(arthur);
+beatrice.atacar(cain);
+
+console.table({ arthur, beatrice, cain });
