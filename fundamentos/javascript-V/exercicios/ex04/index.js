@@ -27,6 +27,9 @@ class thief extends character {
             dano = 0;
         }
         oponente.vida -= dano;
+        console.log(
+            `${this.nome} atacou ${oponente.nome} e causou ${dano} de dano!`
+        );
     }
 }
 
@@ -41,11 +44,17 @@ class mage extends character {
             dano = 0;
         }
         oponente.vida -= dano;
+        console.log(
+            `${this.nome} atacou ${oponente.nome} e causou ${dano} de dano!`
+        );
     }
 
     cura(aliado) {
         let cura = this.magia * 2;
         aliado.vida += cura;
+        console.log(
+            `${this.nome} curou ${aliado.nome} e restaurou ${cura} de vida!`
+        );
     }
 }
 
@@ -57,23 +66,29 @@ class warrior extends character {
     }
 
     atacar(oponente) {
-        if (posicao === "ataque") {
+        if (this.posicao === "ataque") {
             let dano = this.ataque - oponente.defesa;
             if (dano < 0) {
                 dano = 0;
             }
             oponente.vida -= dano;
+            console.log(
+                `${this.nome} atacou ${oponente.nome} e causou ${dano} de dano!`
+            );
         } else {
-            console.log("Você não pode atacar em modo de defesa");
+            console.log(`${this.nome} não pode atacar em modo de defesa`);
         }
     }
 
     mudarPosicao() {
         if (this.posicao === "ataque") {
             this.posicao = "defesa";
+            console.log(`${this.nome} mudou para o modo de defesa!`);
+
             this.defesa += this.escudo;
         } else {
             this.posicao = "ataque";
+            console.log(`${this.nome} mudou para o modo de ataque!`);
             this.defesa -= this.escudo;
         }
     }
