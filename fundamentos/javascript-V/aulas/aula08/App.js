@@ -80,7 +80,7 @@ module.exports = class App {
     createOrder(items, user) {
         const order = new Order(items, user);
         App.#database.saveOrder(order);
-        order.data.items.forEach(({ product, quantity }) => {
+        order.get().items.forEach(({ product, quantity }) => {
             if (product instanceof Book) {
                 App.#database.removeBooksFromStock(product.name, quantity);
             } else if (product instanceof Poster) {
