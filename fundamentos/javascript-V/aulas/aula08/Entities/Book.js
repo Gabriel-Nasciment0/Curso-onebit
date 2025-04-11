@@ -1,4 +1,4 @@
-const Product = require("./product");
+const Product = require("./Product");
 
 module.exports = class Book extends Product {
     constructor(

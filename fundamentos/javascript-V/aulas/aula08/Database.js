@@ -1,4 +1,4 @@
-module.expots = class Database {
+module.exports = class Database {
     #storage = {
         authors: [],
         books: [],
@@ -15,16 +15,13 @@ module.expots = class Database {
         this.#storage.authors.push(author);
     }
 
-    //Books
     findBookByName(bookName) {
         return this.#storage.books.find((b) => b.name === bookName);
     }
 
     saveBook(book) {
         const bookExists = this.findBookByName(book.name);
-        if (!bookExists) {
-            this.#storage.books.push(book);
-        }
+        if (!bookExists) this.#storage.books.push(book);
     }
 
     addBooksToStock(bookName, quantity) {
@@ -37,31 +34,43 @@ module.expots = class Database {
         book?.removeFromStock(quantity);
     }
 
-    //Posters
-
-    findPostersByName(posterName) {
+    findPosterByName(posterName) {
         return this.#storage.posters.find((p) => p.name === posterName);
     }
 
     savePoster(poster) {
-        const posterExists = this.findPostersByName(poster.name);
-        if (!posterExists) {
-            this.#storage.posters.push(poster);
-        }
+        const posterExists = this.findPosterByName(poster.name);
+        if (!posterExists) this.#storage.posters.push(poster);
     }
 
     addPostersToStock(posterName, quantity) {
-        const poster = this.findPostersByName(posterName);
+        const poster = this.findPosterByName(posterName);
         poster?.addToStock(quantity);
     }
 
     removePostersFromStock(posterName, quantity) {
-        const poster = this.findPostersByName(posterName);
+        const poster = this.findPosterByName(posterName);
         poster?.removeFromStock(quantity);
     }
 
-    //Users
-    saveUser(user){
-        const
+    saveUser(user) {
+        const userExists = this.#storage.users.find(
+            (u) => u.email === user.email
+        );
+        if (!userExists) {
+            this.#storage.users.push(user);
+        }
+    }
+
+    saveOrder(order) {
+        this.#storage.orders.push(order);
+    }
+
+    showStorage() {
+        console.table(this.#storage.authors);
+        console.table(this.#storage.books);
+        console.table(this.#storage.posters);
+        console.table(this.#storage.users);
+        console.table(this.#storage.orders.map((order) => order.data));
     }
 };

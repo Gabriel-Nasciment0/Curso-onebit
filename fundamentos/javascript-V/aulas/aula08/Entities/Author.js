@@ -1,4 +1,4 @@
-module.expots = class Author {
+module.exports = class Author {
     constructor(name,nationality,bio){
         this.name = name;
         this.nationality = nationality

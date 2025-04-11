@@ -1,4 +1,4 @@
-module.expots = class Order {
+module.exports = class Order {
     #total;
     #items;
     #user;
