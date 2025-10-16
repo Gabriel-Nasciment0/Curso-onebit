@@ -1,6 +1,6 @@
-let pessoas = [];
+let fila = [];
 while (true) {
-    let menu = prompt(`pessoas na fila ${pessoas.join(",")}
+    let menu = prompt(`pessoas na fila ${fila.join(",")}
 
         Qual operação fazer:
         
@@ -8,16 +8,16 @@ while (true) {
         b) Consultar passiente
         c) Sair
         `).toLowerCase();
-    let fila = "";
+    let pessoas = "";
     if (menu === "a") {
-        fila = prompt("qual o nome do pasciente");
-        alert(`${fila} adicionada`);
-        pessoas.push(fila);
+        pessoas = prompt("qual o nome do pasciente");
+        alert(`${pessoas} adicionada`);
+        fila.push(pessoas);
     } else if (menu === "b") {
-        alert(`${pessoas[0]} Sera atendido`);
-        pessoas.shift();
+        alert(`${fila[0]} Sera atendido`);
+        fila.shift();
     } else if (menu === "c") {
-        if (pessoas.length === 0) {
+        if (fila.length === 0) {
             alert("Programa encerrado. Não há ninguém na fila.");
         } else {
             alert("Programa encerrado. Ainda há pacientes na fila.");

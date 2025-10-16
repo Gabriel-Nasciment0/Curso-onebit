@@ -34,7 +34,7 @@ do {
                 alert(
                     "Imóvel " +
                         (i + 1) +
-                        "\nProprietário: " +
+                        "\nProprietári o: " +
                         imoveis[i].proprietario +
                         "\nQuartos: " +
                         imoveis[i].quartos +
