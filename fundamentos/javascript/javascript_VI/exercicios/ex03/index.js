@@ -1,20 +1,17 @@
 // Reescreva o código do exercício 24 utilizando funções async, await e fazendo as devidas adaptações no código.
 
-function calculoImc(peso, altura) {
-    return new Promise((resolve, reject) => {
-        console.log(`Executando a promise.`);
-        setTimeout(() => {
-            if (!peso || !altura) {
-                reject(` Peso e altura são obrigatorios `);
-            } else {
-                const imc = peso / (altura * altura);
-                resolve(imc);
-            }
-        }, 1 * 1000);
-    });
+async function calculoImc(peso, altura) {
+    console.log(`Executando a promise.`);
+
+    if (!peso || !altura) {
+        return Promise.reject(`Peso e altura são obrigatorios `);
+    }
+    const imc = peso / (altura * altura);
+    return imc;
 }
-calculoImc(65, 1.73)
-    .then((imc) => {
+async function exibirImc() {
+    try {
+        const imc = await calculoImc(65, 1.73);
         console.log(`Seu IMC é: ${imc.toFixed(2)}`);
         console.log(`classificação`);
         //classificação
@@ -36,7 +33,9 @@ calculoImc(65, 1.73)
                 console.log(`obesidade grave`);
                 break;
         }
-    })
-    .catch((erro) => {
-        console.error(`Erro`, erro);
-    });
+    } catch (err) {
+        console.error(`Erro`, err);
+    }
+}
+
+exibirImc();
