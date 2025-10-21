@@ -9,9 +9,9 @@ async function calculoImc(peso, altura) {
     const imc = peso / (altura * altura);
     return imc;
 }
-async function exibirImc() {
+async function exibirImc(peso, altura) {
     try {
-        const imc = await calculoImc(65, 1.73);
+        const imc = await calculoImc(peso, altura);
         console.log(`Seu IMC é: ${imc.toFixed(2)}`);
         console.log(`classificação`);
         //classificação
@@ -38,4 +38,8 @@ async function exibirImc() {
     }
 }
 
-exibirImc();
+exibirImc(71, 1.74);
+exibirImc(48, 1.6);
+exibirImc(71, "texto");
+exibirImc(82, 1.72);
+exibirImc(120, 1.8);
