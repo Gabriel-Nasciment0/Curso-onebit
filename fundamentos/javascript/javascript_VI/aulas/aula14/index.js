@@ -7,5 +7,24 @@ function renderArticle(articleData) {
     title.classList.add("article-title");
     title.textContent = articleData.title;
 
-    const content = document.createElement('div')
+    const content = document.createElement("div");
+    content.classList.add("article-content");
+    content.innerHTML = articleData.content;
+
+    const author = document.createElement("div");
+    author.classList.add("article-author");
+    author.textContent = articleData.author;
+
+    article.append(title, author, content);
+    document.querySelector("#articles").appendChild(article);
 }
+
+async function fetchArticle() {
+    const article = await fetch("http://localhost:3000/articles").then((res) =>
+        res.json()
+    );
+    article.forEach(renderArticle);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    fetchArticle();
+});
