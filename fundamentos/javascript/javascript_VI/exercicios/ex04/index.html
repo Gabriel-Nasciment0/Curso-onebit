@@ -24,22 +24,24 @@ Desenvolva uma aplicação web de página única utilizando html, css e javascri
             <h1>Finanças pessoais</h1>
             <form action="" method="post">
                 <label for="nome">Nome da transação</label>
-                <input type="text" class="nome" name="nome" />
+                <input type="text" id="nome" class="nome" name="nome" />
                 <br />
                 <br />
                 <label for="valor">Valor da transação</label>
-                <input type="number" class="valor" name="valor" />
+                <input type="number" id="valor" class="valor" name="valor" />
                 <br />
                 <br />
                 <button class="button">Adicionar</button>
             </form>
-            <section id="transacoes">
-                <ul class="transacao"></ul>
-            </section>
+            <div>
+                <h2>transações</h2>
+                <section id="transacoes"></section>
+            </div>
             <div class="totalSaldo">
-                <span class="saldo"></span>
+                Saldo total: <span class="saldo">R$ 0</span>
             </div>
         </main>
+
         <script src="script.js"></script>
     </body>
 </html>
