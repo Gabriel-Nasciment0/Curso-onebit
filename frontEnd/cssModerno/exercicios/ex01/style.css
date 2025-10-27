@@ -1,0 +1,96 @@
+/* geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    min-height: 100vh;
+}
+.call-to-action a {
+    background: red;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+.call-to-action a {
+    color: white;
+    text-decoration: none;
+}
+
+/* header */
+header {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 4rem;
+    background: white;
+}
+header > a {
+    text-decoration: none;
+    color: #be0000;
+}
+header nav a {
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #be0000;
+}
+/* main */
+main {
+    position: relative;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+h2 {
+    font-size: 4rem;
+    color: #be0000;
+    text-shadow: 0px 3px 3px black;
+}
+main .call-to-action {
+    margin: 3rem;
+}
+main .call-to-action a {
+    margin-right: 1.5rem;
+}
+/* imagem */
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+}
+/* footer */
+footer {
+    position: fixed;
+    z-index: 9999;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: 4rem;
+    background: #000000b4;
+}
+footer nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}

@@ -3,3 +3,30 @@ body {
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* justify-items: center; */
+    align-items: center;
+    min-height: 100vh;
+
+    gap: 1rem;
+}
+.box {
+    background-color: #4547c7;
+    border: 2px solid #272727;
+    height: 10rem;
+    width: 10rem;
+}
+.red {
+    background-color: #ff665c;
+}
+.yellow {
+    background-color: #f9ff58;
+    height: 20rem;
+}
+.blue {
+    background-color: #5255eb;
+    height: 15rem;
+}
