@@ -1,0 +1,18 @@
+body {
+    background: #2c2c2d;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+}
+.grid-container {
+    display: grid;
+    gap: 1rem;
+    background: #fff;
+    height: 48rem;
+    width: 48rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
+.item {
+    background: #4c5caf;
+}
