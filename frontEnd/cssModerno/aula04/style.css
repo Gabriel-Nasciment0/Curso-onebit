@@ -15,4 +15,34 @@ body {
 }
 .item {
     background: #4c5caf;
+    padding: 1rem;
+}
+.item1 {
+    grid-column: 1 / 4;
+    grid-row: 1;
+}
+
+.item2 {
+    grid-column: 1;
+    grid-row: 2 /4;
+}
+
+.item3 {
+    grid-column: 2/4;
+    grid-row: 2;
+}
+
+.item4 {
+    grid-column: 2/4;
+    grid-row: 3;
+}
+.item5{
+    grid-column: 1/4;
+    grid-row: 4;
+    
+}
+.item6{
+    grid-column: 4;
+    grid-row: 1/5;
+    
 }
