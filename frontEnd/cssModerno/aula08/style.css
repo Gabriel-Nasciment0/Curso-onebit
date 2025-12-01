@@ -1,7 +1,7 @@
 body {
-    background-color: #1c1a1d;
-    color: #fff;
+    background-color: #60ffa5;
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
 }
 header,
 section {
@@ -44,4 +44,45 @@ section {
     color: #000;
     border-radius: 8px;
     padding: 1rem 1.75rem 1.5rem;
+}
+
+@media screen and (min-width: 40rem) {
+    .products {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 900px) {
+    .products {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .products {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* Preferencia de cor */
+@media screen and (prefers-color-scheme: light) {
+    body {
+        background-color: #e0e0e0;
+        color: #1c1a1d;
+    }
+
+    .product {
+        background-color: #fff;
+        color: #1c1a1d;
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-color: #1c1a1d;
+        color: #fff;
+    }
+
+    .product {
+        background-color: #2c2c2d;
+        color: #fff;
+    }
 }
