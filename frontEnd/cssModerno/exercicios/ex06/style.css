@@ -10,7 +10,9 @@
     --Fundo-escuro: #2c2c2e;
     --Fundo-preto: #070707;
 }
-
+body {
+    background: var(--Fundo-claro);
+}
 .hero {
     display: flex;
     justify-content: center;
@@ -22,8 +24,10 @@
 }
 .hero-content {
     padding: 5rem;
+    background: #00000075;
     color: #fff;
     width: 100%;
+    height: 100%;
 }
 .hero-content h1 {
     text-align: center;
@@ -43,5 +47,113 @@
     color: #fff;
     background: var(--Cor-principal);
     padding: 0.7rem;
+    border-radius: 10px;
+}
+
+.speakers {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.speakers h2 {
+    padding: 2rem 0;
+}
+.speakers-grid {
+    display: grid;
+    gap: 1rem;
+}
+.speaker-card {
+    background: var(--Fundo-branco);
+    box-shadow: 0rem 0.05rem 0.2rem var(--Fundo-preto);
+
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+}
+
+.speaker-card img {
+    border-radius: 50%;
+}
+
+.speaker-card h3 {
+    padding: 0.7rem 0;
+}
+
+.schedule h2 {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+}
+
+.schedule-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.schedule-item {
+    background: var(--Fundo-branco);
+    width: 90%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+.schedule-item h3 {
+    padding-bottom: 1rem;
+}
+
+.newslatter {
+    text-align: center;
+}
+.newslatter-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.newsletter-image img {
+    width: 100%;
+    height: 250px;
+    padding: 2rem;
+}
+
+.newsletter-text {
+    text-align: center;
+    display: grid;
+    gap: 1rem;
+}
+.newsletter-text h2 {
+    font-size: 2rem;
+}
+
+.newsletter-text p {
+    font-size: 1.1rem;
+}
+
+.newslatter-form .form-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-group input {
     border-radius: 0.5rem;
+    border: none;
+    margin: 0.6rem 0;
+    padding: 0.5rem;
+    width: 90%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 5px;
+    background: var(--Cor-principal);
+    color: #fff;
+    text-decoration: none;
+}
+footer {
+    text-align: center;
+    padding-top: 4rem;
+}
+
+footer .btn {
+    margin: 2rem 0;
 }
