@@ -57,7 +57,6 @@ body {
 
 .speakers h2 {
     padding: 2rem 0;
-    
 }
 .speakers-grid {
     display: grid;
@@ -158,4 +157,135 @@ footer {
 
 footer .btn {
     margin: 2rem 0;
+}
+
+@media screen and (min-width: 1000px) {
+    .hero {
+        height: 700px;
+    }
+    .hero-content {
+        padding: 15rem;
+    }
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+    .hero-content p {
+        padding: 1.5rem 0;
+    }
+
+    .speakers {
+        text-align: center;
+    }
+
+    .speakers h2 {
+        padding: 2rem 0;
+        font-size: 2rem;
+    }
+    .speakers-grid {
+        display: grid;
+        padding: 0 2rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem;
+    }
+    .speaker-card {
+        background: var(--Fundo-branco);
+        box-shadow: 0rem 0.05rem 0.2rem var(--Fundo-preto);
+        padding: 1.6rem;
+        border-radius: 1.5rem;
+    }
+
+    .speaker-card img {
+        border-radius: 50%;
+    }
+
+    .speaker-card h3 {
+        padding: 0.7rem 0;
+    }
+
+    .schedule h2 {
+        text-align: center;
+        padding: 5rem 0 0 0;
+        font-size: 2rem;
+    }
+
+    .schedule-grid {
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 3rem 3rem;
+    }
+
+    .schedule-item {
+        background: var(--Fundo-branco);
+        width: 100%;
+        padding: 1rem;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+    .schedule-item h3 {
+        padding-bottom: 1rem;
+    }
+
+    .newsletter-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .newsletter-image img {
+        width: 100%;
+        height: 500px;
+        padding: 2rem;
+    }
+
+    .newsletter-text {
+        display: grid;
+        width: 100%;
+        text-align: start;
+        gap: 1rem;
+    }
+    .newsletter-text h2 {
+        font-size: 2rem;
+        padding: 0;
+    }
+
+    .newsletter-text p {
+        font-size: 1.1rem;
+    }
+
+    .newslatter-form .form-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .form-group label {
+        display: block;
+    }
+    .form-group input {
+        border-radius: 0.5rem;
+        border: none;
+        margin: 1rem 0;
+        padding: 0.6rem;
+        max-width: 500px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.6rem;
+        margin: 1rem 0;
+        border: none;
+        border-radius: 5px;
+        background: var(--Cor-principal);
+        color: #fff;
+        text-decoration: none;
+    }
+    footer {
+        text-align: center;
+        padding-top: 4rem;
+    }
+
+    footer .btn {
+        margin: 2rem 0;
+    }
 }
