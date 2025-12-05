@@ -173,6 +173,7 @@ footer {
 
     .header__section {
         height: 500px;
+        overflow: hidden;
     }
 
     .header__section-text h1 {
