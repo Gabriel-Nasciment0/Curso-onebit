@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Componentes bootstrap</title>
+    </head>
+
+    <body>
+        <header class="navbar navbar-expand-md bg-primary">
+            <div class="container-fluid">
+                <a href="" class="navbar-brand">LOGO</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbar-main"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navbar-main" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">contatos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">suporte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="container-fluid text-center mt-5 mt-auto">
+            <div class="py-5 mx-auto w-50">
+                <h1>Usando componentes do bootstrap</h1>
+                <p class="fs-5">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aliquam, corrupti? Cum quibusdam molestias sint, deserunt
+                    blanditiis quos eos laboriosam saepe voluptate quisquam quam
+                    at nobis, consectetur accusantium debitis facilis repellat?
+                </p>
+                <a href="#" class="btn btn-primary">call to action</a>
+                <button
+                    type="button"
+                    class="btn btn-outline-light btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal1"
+                >
+                    open modal
+                </button>
+                <div
+                    class="modal"
+                    id="modal1"
+                    tabindex="-1"
+                    aria-labelledby="modal1"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>modal aberto</h3>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Culpa quo reiciendis
+                                    temporibus totam ex, ducimus numquam nobis
+                                    odit maiores? Eaque voluptate rerum, dolorum
+                                    sequi quaerat incidunt esse possimus aliquid
+                                    sapiente.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <section class="py-5">
+            <h2 class="text-center">cards no Bootstrap</h2>
+            <div class="d-flex justfy-content-center gap-3">
+                <div class="card product-card">
+                    <img
+                        src="http://unsplash.it/120"
+                        alt=""
+                        class="card-img-top"
+                    />
+                    <div class="card-body">
+                        <h3 class="card-title">titulo do card</h3>
+                        <p class="card-subtitle mb-2 text-secondary">
+                            subtitulo do card
+                        </p>
+                        <p class="card-text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Quidem neque quod aut atque error officiis,
+                            dicta est porro eum reiciendis consequatur aliquam
+                            soluta, velit alias esse? Totam quaerat quidem
+                            molestiae.
+                        </p>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="card-body">
+                        <h3>titulo do card</h3>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="card-body">
+                        <h3>titulo do card</h3>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="card-body">
+                        <h3>titulo do card</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
