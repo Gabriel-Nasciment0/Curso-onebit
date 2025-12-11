@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box01 {
+    background: url(img/pexels-kellie-churchman-371878-1001682.webp) no-repeat
+        center;
+    background-size: cover;
+    height: 380px;
+}
+.carousel-caption {
+    background: #0000005e;
+    border-radius: 20px;
+}
