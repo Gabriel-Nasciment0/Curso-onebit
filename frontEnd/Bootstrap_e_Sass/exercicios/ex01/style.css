@@ -4,13 +4,23 @@
     box-sizing: border-box;
 }
 
-.box01 {
-    background: url(img/pexels-kellie-churchman-371878-1001682.webp) no-repeat
-        center;
+.cover-section {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+        url(img/pexels-kellie-churchman-371878-1001682.webp) no-repeat center;
     background-size: cover;
-    height: 380px;
 }
-.carousel-caption {
-    background: #0000005e;
-    border-radius: 20px;
+
+.card-testimonial {
+    max-width: 24rem;
+}
+.card-testimonial img {
+    height: 12rem;
+    width: 12rem;
+}
+
+.destinations-section {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+        url(img/pexels-fabianwiktor-994605.webp) no-repeat center;
+    background-size: cover;
+    min-height: 32rem;
 }
