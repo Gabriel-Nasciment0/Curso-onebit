@@ -1,0 +1,11 @@
+@use "_variables" as *;
+section {
+    padding: $spacing-sm;
+}
+.container {
+    padding: $spacing-sm $spacing-lg;
+
+    p {
+        margin-top: $spacing-sm * 2;
+    }
+}

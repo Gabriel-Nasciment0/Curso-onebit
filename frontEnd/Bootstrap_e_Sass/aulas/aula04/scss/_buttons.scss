@@ -1,0 +1,49 @@
+@use "_variables" as *;
+@use "sass:color";
+.btn {
+    background-color: $color-light;
+    color: $color-dark;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: $spacing-xs $spacing-xs * 1.2;
+    transition: 0.15s;
+
+    &:hover {
+        background-color: color.scale($color-light, $lightness: -50%);
+    }
+    &.btn-primary {
+        background-color: $color-primary;
+        color: $color-light;
+
+        &:hover {
+            background-color: color.scale($color-primary, $lightness: -20%);
+        }
+    }
+    &.btn-secondary {
+        background-color: $color-secondary;
+        color: $color-light;
+
+        &:hover {
+            background-color: color.scale($color-secondary, $lightness: -20%);
+        }
+    }
+    &.btn-success {
+        background-color: $color-success;
+        color: $color-light;
+
+        &:hover {
+            background-color: color.scale($color-success, $lightness: -20%);
+        }
+    }
+    &.btn-danger {
+        background-color: $color-danger;
+        color: $color-light;
+
+        &:hover {
+            background-color: color.scale($color-danger, $lightness: -20%);
+        }
+    }
+}

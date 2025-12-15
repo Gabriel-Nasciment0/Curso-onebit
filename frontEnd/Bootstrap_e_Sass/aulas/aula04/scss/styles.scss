@@ -1,0 +1,13 @@
+@use "_variables" as *;
+@use "forms";
+@use "buttons";
+@use "layouts";
+
+body {
+    background-color: $color-dark;
+    color: $color-light;
+}
+
+p {
+    margin-top: $spacing-sm;
+}
