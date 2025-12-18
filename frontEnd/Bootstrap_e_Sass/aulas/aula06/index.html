@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark">
+<html
+    lang="pt-br"
+    data-bs-theme="dark"
+>
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -27,6 +30,20 @@
                 trabalha forma responsiva e suporta a maioria das classes
                 utilitárias do Flexbox.
             </p>
+            <div class="row gap-1 text-center text-light">
+                <div class="col bg-primary">coluna 1</div>
+                <div class="col bg-primary">coluna 2</div>
+                <div class="col bg-primary">coluna 3</div>
+                <div class="col bg-primary">coluna 4</div>
+                <div class="col bg-primary">coluna 5</div>
+                <div class="col bg-primary">coluna 6</div>
+                <div class="col bg-primary">coluna 7</div>
+                <div class="col bg-primary">coluna 8</div>
+                <div class="col bg-primary">coluna 9</div>
+                <div class="col bg-primary">coluna 10</div>
+                <div class="col bg-primary">coluna 11</div>
+                <div class="col bg-primary">coluna 12</div>
+            </div>
         </div>
 
         <div class="container-fluid mt-3">
@@ -35,6 +52,24 @@
                 Permite definir tamanhos específicos para as colunas se baseando
                 em um sistema de grade com 12 colunas.
             </p>
+            <div class="row">
+                <div class="col col-4 bg-secondary p-5 border">
+                    coluna da esquerda (6/12)
+                </div>
+                <div class="col col-8 bg-secondary p-5 border">
+                    coluna da direita (6/12)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col offset-3 bg-secondary p-5 border">
+                    sidebar (3/12)
+                </div>
+                <div class="col col-6 bg-secondary p-5 border">main (6/12)</div>
+                <div class="col col-3 bg-secondary p-5 border">
+                    sidebar 2 (3/12)
+                </div>
+            </div>
         </div>
 
         <div class="container-fluid mt-3">
@@ -44,6 +79,11 @@
                 colunas apenas a partir de um breakpoint, garantindo uma melhor
                 responsividade.
             </p>
+            <div class="row min-vh-100">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
 
         <script
