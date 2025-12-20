@@ -9,50 +9,60 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0"
         />
-        <title>Document</title>
+
+        <title>DevHub</title>
+
+        <!-- Bootstrap Icons -->
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         />
+
+        <!-- Bootstrap CSS -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
+
+        <!-- Seu CSS -->
         <link
             rel="stylesheet"
             href="scss/style.css"
         />
     </head>
+
     <body>
-        <header class="col navbar navbar-expand-lg bg-body-tertiary">
+        <!-- ================= HEADER ================= -->
+        <header class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
                 <a
                     class="navbar-brand"
                     href="#"
                     >DevHub</a
                 >
+
                 <button
                     class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02"
+                    data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div
                     class="collapse navbar-collapse"
-                    id="navbarTogglerDemo02"
+                    id="navbarToggler"
                 >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a
                                 class="nav-link active"
-                                aria-current="page"
                                 href="#"
                                 >Home</a
                             >
@@ -72,6 +82,7 @@
                             >
                         </li>
                     </ul>
+
                     <form
                         class="d-flex"
                         role="search"
@@ -80,12 +91,8 @@
                             class="form-control me-2 rounded-4"
                             type="search"
                             placeholder="Search on DevHub"
-                            aria-label="Search"
                         />
-                        <button
-                            class="btn btn-outline-primary rounded-5"
-                            type="submit"
-                        >
+                        <button class="btn btn-outline-primary rounded-5">
                             <i class="bi bi-search"></i>
                         </button>
 
@@ -94,19 +101,20 @@
                                 type="button"
                                 class="btn btn-primary dropdown-toggle rounded-4"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"
                             >
                                 <i class="bi bi-three-dots-vertical"></i>
                                 Options
                             </button>
-                            <ul class="dropdown-menu">
+
+                            <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a
                                         class="dropdown-item"
                                         href="#"
-                                        ><i class="bi bi-person-circle"></i> My
-                                        Account</a
                                     >
+                                        <i class="bi bi-person-circle"></i> My
+                                        Account
+                                    </a>
                                 </li>
                                 <li>
                                     <a
@@ -114,35 +122,44 @@
                                         href="#"
                                     >
                                         <i class="bi bi-gear"></i> Settings and
-                                        Privacy</a
-                                    >
+                                        Privacy
+                                    </a>
                                 </li>
                                 <li>
                                     <a
                                         class="dropdown-item"
                                         href="#"
-                                        ><i class="bi bi-question-circle"></i>
-                                        Help and Support</a
                                     >
+                                        <i class="bi bi-question-circle"></i>
+                                        Help and Support
+                                    </a>
                                 </li>
+
                                 <li><hr class="dropdown-divider" /></li>
+
                                 <li>
                                     <button
-                                        class="dropdown-item btn"
-                                        href="#"
+                                        class="dropdown-item d-flex align-items-center gap-2"
                                         id="themeToggle"
+                                        type="button"
                                     >
-                                        Switch Theme
+                                        <i
+                                            id="themeIcon"
+                                            class="bi bi-moon-stars"
+                                        ></i>
+                                        <span id="themeText">Dark mode</span>
                                     </button>
                                 </li>
+
                                 <li><hr class="dropdown-divider" /></li>
+
                                 <li>
                                     <a
                                         class="dropdown-item"
                                         href="#"
-                                        ><i class="bi bi-door-open"></i>
-                                        Logout</a
                                     >
+                                        <i class="bi bi-door-open"></i> Logout
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -150,79 +167,123 @@
                 </div>
             </div>
         </header>
-        <main class="container mx-auto row gap-1">
-            <div class="navSidebar h-50 col p-3 rounded-4 bg-body-tertiary">
-                <h2>Navigations</h2>
-                <div class="navgation ps-3 text-info">
-                    <p><i class="bi bi-person"></i> Profile</p>
-                    <p><i class="bi bi-people"></i> Groups</p>
-                    <p><i class="bi bi-code"></i> Projects</p>
-                    <p><i class="bi bi-calendar-event"></i> Events</p>
-                    <p><i class="bi bi-bookmark"></i> Saved</p>
-                </div>
-            </div>
-            <!-- navSidebar -->
 
-            <div class="col-6 ">
-                <div class="coments border-bottom">
+        <!-- ================= MAIN ================= -->
+        <main class="container my-4">
+            <div class="row gx-4 gy-4">
+                <!-- Sidebar esquerda -->
+                <aside class="col-12 col-lg-3">
+                    <div class="p-3 rounded-4 bg-body-tertiary">
+                        <h5>Navigations</h5>
+                        <div class="ps-3 text-info">
+                            <p><i class="bi bi-person"></i> Profile</p>
+                            <p><i class="bi bi-people"></i> Groups</p>
+                            <p><i class="bi bi-code"></i> Projects</p>
+                            <p><i class="bi bi-calendar-event"></i> Events</p>
+                            <p><i class="bi bi-bookmark"></i> Saved</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Conteúdo central -->
+                <section class="central col-12 col-lg-6">
                     <div class="mb-3 p-3 rounded-4 bg-body-tertiary">
                         <input
                             type="text"
                             class="form-control rounded-3"
-                            id="exampleFormControlInput1"
-                            placeholder="  What have you been building?"
+                            placeholder="What have you been building?"
                         />
                     </div>
-                </div>
-                <div class="posts">
-                    <div class="post01">
-                        <div class="perfil">jhon doe</div>
-                        <div class="text">
-                            just launched my new open-source project!
+
+                    <div class="p-3 mb-3 rounded-4 bg-body-tertiary">
+                        <div class="perfil ps-2 row">
+                            <img
+                                src="https://images.pexels.com/photos/33643200/pexels-photo-33643200.jpeg"
+                                class="img-thumbnail rounded-5 col-3"
+                                alt="..."
+                            />
+                            <div class="text col d-flex">
+                                <p>John Doe</p>
+                                <p>2 hours ago</p>
+                            </div>
                         </div>
-                        <div class="actions d-flex gap-5">
-                            <div class="like">curtir</div>
-                            <div class="coment">comentar</div>
-                            <div class="share">Compartilhar</div>
+
+                        <p class="post pb-5 mt-3 border-bottom">
+                            Just launched my new open-source project!
+                        </p>
+                        <div class="action d-flex">
+                            <p class="like">
+                                <i class="bi bi-hand-thumbs-up"></i> Curtir
+                            </p>
+                            <div class="coment">
+                                <i class="bi bi-chat"></i> Comentar
+                            </div>
+                            <div class="share">
+                                <i class="bi bi-share"></i> Compartilhar
+                            </div>
                         </div>
                     </div>
-                    <div class="post02">
-                         <div class="perfil">jhon doe</div>
-                        <div class="text">
-                            just launched my new open-source project!
+
+                    <div class="p-3 mb-3 rounded-4 bg-body-tertiary">
+                        <div class="perfil ps-2 row">
+                            <img
+                                src="https://images.pexels.com/photos/33643200/pexels-photo-33643200.jpeg"
+                                class="img-thumbnail rounded-5 col-3"
+                                alt="..."
+                            />
+                            <div class="text col d-flex">
+                                <p>jane smith</p>
+                                <p>5 hours ago</p>
+                            </div>
                         </div>
-                        <div class="actions d-flex gap-5">
-                            <div class="like">curtir</div>
-                            <div class="coment">comentar</div>
-                            <div class="share">Compartilhar</div>
+
+                        <p class="post pb-5 mt-3 border-bottom">
+                            Just launched my new open-source project!
+                        </p>
+                        <div class="action d-flex">
+                            <p class="like">
+                                <i class="bi bi-hand-thumbs-up"></i> Curtir
+                            </p>
+                            <div class="coment">
+                                <i class="bi bi-chat"></i> Comentar
+                            </div>
+                            <div class="share">
+                                <i class="bi bi-share"></i> Compartilhar
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <div class="trendSidebar col">
-                <div class="trends p-3 rounded-4 bg-body-tertiary">
-                    <h2>trends</h2>
+                <!-- Sidebar direita -->
+                <aside class="col-12 col-lg-3">
+                    <div class="p-3 rounded-4 bg-body-tertiary">
+                        <h5>Trends</h5>
+                        <a href="#">#OpenSource</a><br />
+                        <a href="#">#ReactJS</a><br />
+                        <a href="#">#WebDevelopment</a><br />
+                        <a href="#">#CSS</a>
+                    </div>
 
-                    <a href="#">#OpenSource</a>
-                    <a href="#">#ReactJS</a>
-                    <a href="#">#WebDevelopment</a>
-                    <a href="#">#CSS</a>
-                </div>
-
-                <img
-                    src="https://images.pexels.com/photos/35113988/pexels-photo-35113988.jpeg"
-                    class="img-fluid pt-4"
-                    alt="..."
-                />
+                    <img
+                        src="https://images.pexels.com/photos/35113988/pexels-photo-35113988.jpeg"
+                        class="img-fluid pt-4 rounded-4"
+                        alt="Trends image"
+                    />
+                </aside>
             </div>
         </main>
 
+        <footer>
+            <p>C 2025 DevHub. All rights reserved</p>
+        </footer>
+        <!-- Bootstrap JS -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
 
+        <!-- Theme toggle -->
         <script src="theme.js"></script>
     </body>
 </html>

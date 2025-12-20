@@ -3,14 +3,24 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-main {
-    padding-top: 1rem;
-    .trendSidebar {
-        .trends {
-            a {
-                display: block;
+.central {
+    .perfil {
+        img {
+            height: 50px;
+            width: 50px;
+        }
+        .text {
+            flex-wrap: wrap;
+            p {
+                margin: 0;
+                width: 100%;
+            }
+            p:last-child {
+                color: gray;
             }
         }
+    }
+    .action {
+        justify-content: space-evenly;
     }
 }

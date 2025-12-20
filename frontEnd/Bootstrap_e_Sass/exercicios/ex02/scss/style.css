@@ -4,9 +4,20 @@
   box-sizing: border-box;
 }
 
-main {
-  padding-top: 1rem;
+.central .perfil img {
+  height: 50px;
+  width: 50px;
 }
-main .trendSidebar .trends a {
-  display: block;
+.central .perfil .text {
+  flex-wrap: wrap;
+}
+.central .perfil .text p {
+  margin: 0;
+  width: 100%;
+}
+.central .perfil .text p:last-child {
+  color: gray;
+}
+.central .action {
+  justify-content: space-evenly;
 }/*# sourceMappingURL=style.css.map */
