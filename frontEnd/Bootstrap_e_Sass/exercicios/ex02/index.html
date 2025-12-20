@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-    lang="en"
+    lang="pt-br"
     data-bs-theme="dark"
 >
     <head>
@@ -20,9 +20,13 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
+        <link
+            rel="stylesheet"
+            href="scss/style.css"
+        />
     </head>
     <body>
-        <header class="navbar navbar-expand-lg bg-body-tertiary">
+        <header class="col navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
                 <a
                     class="navbar-brand"
@@ -146,10 +150,10 @@
                 </div>
             </div>
         </header>
-        <div class="container">
-            <div class="sidebar bg-body-tertiary p-3">
+        <main class="container mx-auto row gap-1">
+            <div class="navSidebar h-50 col p-3 rounded-4 bg-body-tertiary">
                 <h2>Navigations</h2>
-                <div class="navgationBar text-info">
+                <div class="navgation ps-3 text-info">
                     <p><i class="bi bi-person"></i> Profile</p>
                     <p><i class="bi bi-people"></i> Groups</p>
                     <p><i class="bi bi-code"></i> Projects</p>
@@ -157,13 +161,61 @@
                     <p><i class="bi bi-bookmark"></i> Saved</p>
                 </div>
             </div>
-            <!-- sidebar -->
+            <!-- navSidebar -->
 
-            <main>
-                <div class="coments"></div>
-                <div class="posts"></div>
-            </main>
-        </div>
+            <div class="col-6 ">
+                <div class="coments border-bottom">
+                    <div class="mb-3 p-3 rounded-4 bg-body-tertiary">
+                        <input
+                            type="text"
+                            class="form-control rounded-3"
+                            id="exampleFormControlInput1"
+                            placeholder="  What have you been building?"
+                        />
+                    </div>
+                </div>
+                <div class="posts">
+                    <div class="post01">
+                        <div class="perfil">jhon doe</div>
+                        <div class="text">
+                            just launched my new open-source project!
+                        </div>
+                        <div class="actions d-flex gap-5">
+                            <div class="like">curtir</div>
+                            <div class="coment">comentar</div>
+                            <div class="share">Compartilhar</div>
+                        </div>
+                    </div>
+                    <div class="post02">
+                         <div class="perfil">jhon doe</div>
+                        <div class="text">
+                            just launched my new open-source project!
+                        </div>
+                        <div class="actions d-flex gap-5">
+                            <div class="like">curtir</div>
+                            <div class="coment">comentar</div>
+                            <div class="share">Compartilhar</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trendSidebar col">
+                <div class="trends p-3 rounded-4 bg-body-tertiary">
+                    <h2>trends</h2>
+
+                    <a href="#">#OpenSource</a>
+                    <a href="#">#ReactJS</a>
+                    <a href="#">#WebDevelopment</a>
+                    <a href="#">#CSS</a>
+                </div>
+
+                <img
+                    src="https://images.pexels.com/photos/35113988/pexels-photo-35113988.jpeg"
+                    class="img-fluid pt-4"
+                    alt="..."
+                />
+            </div>
+        </main>
 
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
