@@ -164,6 +164,48 @@
                             </ul>
                         </div>
                     </form>
+                    <!-- Navigation MOBILE -->
+                    <div class="d-lg-none mt-3 border-top pt-3">
+                        <h6 class="text-uppercase text-muted">Navigations</h6>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="#"
+                                    ><i class="bi bi-person"></i> Profile</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="#"
+                                    ><i class="bi bi-people"></i> Groups</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="#"
+                                    ><i class="bi bi-code"></i> Projects</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="#"
+                                    ><i class="bi bi-calendar-event"></i>
+                                    Events</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="#"
+                                    ><i class="bi bi-bookmark"></i> Saved</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </header>
@@ -171,9 +213,9 @@
         <!-- ================= MAIN ================= -->
         <main class="container my-4">
             <div class="row gx-4 gy-4">
-                <!-- Sidebar esquerda -->
-                <aside class="col-12 col-lg-3">
-                    <div class="p-3 rounded-4 bg-body-tertiary">
+                <!-- Sidebar DESKTOP -->
+                <aside class="col-lg-3 d-none d-lg-block">
+                    <div class="p-3 mb-5 rounded-4 bg-body-tertiary">
                         <h5>Navigations</h5>
                         <div class="ps-3 text-info">
                             <p><i class="bi bi-person"></i> Profile</p>
@@ -187,15 +229,70 @@
 
                 <!-- Conteúdo central -->
                 <section class="central col-12 col-lg-6">
-                    <div class="mb-3 p-3 rounded-4 bg-body-tertiary">
+                    <div class="mb-5 p-3 rounded-4 bg-body-tertiary">
                         <input
                             type="text"
                             class="form-control rounded-3"
                             placeholder="What have you been building?"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
                         />
+
+                        <div
+                            class="modal fade"
+                            id="exampleModal"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1
+                                            class="modal-title fs-5"
+                                            id="exampleModalLabel"
+                                        >
+                                            New post
+                                        </h1>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <textarea
+                                                    class="form-control"
+                                                    id="message-text"
+                                                    placeholder="share something..."
+                                                ></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary rounded-4"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Close
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary text-dark rounded-4"
+                                        >
+                                            publish post
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="p-3 mb-3 rounded-4 bg-body-tertiary">
+                    <div class="p-4 mb-4 rounded-4 bg-body-tertiary">
                         <div class="perfil ps-2 row">
                             <img
                                 src="https://images.pexels.com/photos/33643200/pexels-photo-33643200.jpeg"
@@ -273,7 +370,7 @@
             </div>
         </main>
 
-        <footer>
+        <footer class="fixed-bottom text-center bg-body-tertiary p-3">
             <p>C 2025 DevHub. All rights reserved</p>
         </footer>
         <!-- Bootstrap JS -->
