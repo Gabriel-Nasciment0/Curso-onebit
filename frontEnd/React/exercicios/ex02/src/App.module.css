@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 .app {
     display: flex;
@@ -13,7 +14,7 @@
 
 .container {
     display: flex;
-    width: 750px;
+    width: 800px;
     padding: 3rem;
     border-radius: 1rem;
     align-items: center;
@@ -34,9 +35,9 @@
 }
 
 .text p {
-    margin: 1rem 0;
-    font-size: 1.1rem;
-    line-height: 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    line-height: 1.4rem;
     color: #555;
 }
 
