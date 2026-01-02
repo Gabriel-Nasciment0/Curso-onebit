@@ -1,17 +1,18 @@
 import styles from "../Card/styles.module.css"
 import Button from "../Button/index"
-export default function card() {
+
+export default function card(props) {
     return (
         <div className={styles.card}>
             <div className={styles.container}>
                 <div className={styles.img}>
                     <img
-                        src="https://i.pinimg.com/originals/ba/94/64/ba9464145eba8762f6286a3c8387c951.jpg"
-                        alt=""
+                        src={props.posterImg}
+                        alt={props.title}
                     />
                 </div>
                 <div className={styles.text}>
-                    <h1>Poster: Star Wars (1977)</h1>
+                    <h1>{props.title}</h1>
                     <p>
                         Um poster decorativo epico do filme Star Wars, com
                         moldura de MDF e tamanho A3. Uma ótima recordação de um
