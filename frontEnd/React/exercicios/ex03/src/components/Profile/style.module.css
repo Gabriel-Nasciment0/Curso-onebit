@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.profile {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #3279b3;
+}
+.container {
+    background: #fff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+}
+.bio {
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+.phone {
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+.email {
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+hr {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0.01rem solid #3279b3;
+}
+button {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.7rem 2rem;
+    width: 140px;
+    border-radius: 0.8rem;
+    border: none;
+    font-weight: bolder;
+    color: #fff;
+    background: linear-gradient(to right, #3279b3, #3279b380);
+}
