@@ -3,18 +3,18 @@ import profileImg from "./assets/pexels-jit-roy-2028348030-31374567.jpg"
 
 function App() {
     return (
-        <>
+        <div className="app">
             <Profile
-                img={profileImg}
+                avatar={profileImg}
                 name="John Doe"
                 bio="Full-stack javascript developer at Acme Inc."
+                email="john.doe@email.com"
                 phone="+5511987654321"
-                email="jonh.doe@email.com"
-                githubUrl="https://github.com/"
-                linkedinUrl="https://br.linkedin.com/"
-                twitterUrl="https://x.com/?lang=pt"
+                githubUrl="https://github.com"
+                linkedinUrl="https://linkedin.com"
+                twitterUrl="https://twitter.com"
             />
-        </>
+        </div>
     )
 }
 

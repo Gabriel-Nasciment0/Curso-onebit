@@ -44,7 +44,7 @@ hr {
     padding: 0;
     border-bottom: 0.01rem solid #3279b3;
 }
-button {
+a {
     display: block;
     margin: 1rem auto;
     padding: 0.7rem 2rem;
@@ -52,6 +52,7 @@ button {
     border-radius: 0.8rem;
     border: none;
     font-weight: bolder;
+    text-decoration: none;
     color: #fff;
-    background: linear-gradient(to right, #3279b3, #3279b380);
+    background: linear-gradient(to right, #3279b3, #3279b38c);
 }
