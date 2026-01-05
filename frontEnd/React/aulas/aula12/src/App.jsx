@@ -1,7 +1,7 @@
 import Profile from "./components/Profile/index"
 import profileImg from "./assets/pexels-jit-roy-2028348030-31374567.jpg"
 
-function App() {
+export default function App() {
     return (
         <div className="app">
             <Profile
@@ -17,5 +17,3 @@ function App() {
         </div>
     )
 }
-
-export default App
