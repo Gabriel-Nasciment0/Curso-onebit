@@ -3,6 +3,10 @@ import Title from "../Title"
 import ProfileSection from "./ProfileSection"
 import styles from "./style.module.css"
 
+function handleClick(ev) {
+    console.log(ev)
+    alert("Seguindo")
+}
 export default function Profile(props) {
     return (
         <div className={styles.container}>
@@ -13,6 +17,12 @@ export default function Profile(props) {
             />
             <Title>
                 <span>{props.name}</span>
+                <button
+                    className={styles.fallowButton}
+                    onClick={handleClick}
+                >
+                    Follow
+                </button>
             </Title>
             <ProfileSection>{props.bio}</ProfileSection>
             <ProfileSection>{props.phone}</ProfileSection>
