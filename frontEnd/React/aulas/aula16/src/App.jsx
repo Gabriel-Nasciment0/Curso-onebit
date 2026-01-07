@@ -1,19 +1,23 @@
-import Profile from "./components/Profile/index"
-import profileImg from "./assets/pexels-jit-roy-2028348030-31374567.jpg"
+import { useState } from "react"
 
-export default function App() {
+import "./App.css"
+// Regra 1: Onde usar os hooks
+function App() {
+    const [count, setCount] = useState(0)
+
     return (
-        <div className="app">
-            <Profile
-                avatar={profileImg}
-                name="John Doe"
-                bio="Full-stack javascript developer at Acme Inc."
-                email="john.doe@email.com"
-                phone="+5511987654321"
-                githubUrl="https://github.com"
-                linkedinUrl="https://linkedin.com"
-                twitterUrl="https://twitter.com"
-            />
-        </div>
+        <>
+            <h1>Vite + React</h1>
+            <div className="card">
+                <button onClick={() => setCount((count) => count + 1)}>
+                    count is {count}
+                </button>
+                <p>
+                    Edit <code>src/App.jsx</code> and save to test HMR
+                </p>
+            </div>
+        </>
     )
 }
+
+export default App
