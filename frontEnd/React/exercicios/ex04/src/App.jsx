@@ -5,7 +5,10 @@ export default function App() {
     return (
         <>
             <GeradorSenhas
-             title="Gerador de senhas" />
+                title="Gerador de senhas"
+                gerar="Gerar"
+                copiar="Copiar"
+            />
         </>
     )
 }

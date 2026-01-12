@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+.containerButton {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2.5rem;
+}
+button {
+    border-radius: 0.4rem;
+    padding: 0.6rem 0.9rem;
+    background: #202020;
+    border: none;
+}
+button:hover {
+    cursor: pointer;
+    border: 1.5px solid darkblue;
+}
