@@ -2,19 +2,24 @@ import styles from "./style.module.css"
 
 export default function geradorSenhas(props) {
     function Gerar() {
-        let letraMinuscula = "abcdefghijklmnopqrstuvwxyz".split("")
-        let letraMaiuscula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
-        let numeros = "0123456789".split("")
-        let simbolos = "!@#$%^&*()-_=+[]{}<>?/".split("")
+        const letraMinuscula = "abcdefghijklmnopqrstuvwxyz".split("")
+        const letraMaiuscula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+        const numeros = "0123456789".split("")
+        const simbolos = "!@#$%^&*()-_=+[]{}<>?/".split("")
         const caracteres = [
             ...letraMinuscula,
             ...letraMaiuscula,
             ...numeros,
             ...simbolos,
         ]
-        const tamanhoSenha = Math.floor(Math.random() * caracteres.length)
-        const caractere = caracteres[tamanhoSenha]
-        
+
+        let tamanhoSenha = 10
+        let senha = ""
+        for (let index = 0; index < tamanhoSenha; index++) {
+            const senhaAleatoria = Math.floor(Math.random() * caracteres.length)
+            const caractere = caracteres[senhaAleatoria]
+            senha += caractere
+        }
     }
     return (
         <div className={styles.main}>
