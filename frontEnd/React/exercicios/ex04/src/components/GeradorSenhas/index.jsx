@@ -28,12 +28,20 @@ export default function geradorSenhas(props) {
         }
         setSenha(senhaGerada)
     }
+
+    function Copiar() {}
+
     return (
         <div className={styles.main}>
             <div className={styles.container}>
                 <h1 className={styles.title}>{props.title}</h1>
                 <div className={styles.containerButton}>
-                    <button className={styles.gerar}>{props.gerar}</button>
+                    <button
+                        className={styles.gerar}
+                        onClick={Gerar}
+                    >
+                        {props.gerar}
+                    </button>
                     <button className={styles.copiar}>{props.copiar}</button>
                 </div>
                 <div className={styles.senha}>{senha}</div>
