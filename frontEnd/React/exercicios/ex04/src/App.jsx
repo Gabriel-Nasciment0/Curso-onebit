@@ -7,7 +7,6 @@ export default function App() {
             <GeradorSenhas
                 title="Gerador de senhas"
                 gerar="Gerar"
-                copiar="Copiar"
             />
         </>
     )

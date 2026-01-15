@@ -25,3 +25,7 @@ button:hover {
     cursor: pointer;
     border: 1.5px solid darkblue;
 }
+.senha{
+    padding-top: 1rem;
+    text-align: center;
+}
