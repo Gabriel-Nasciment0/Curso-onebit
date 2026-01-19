@@ -1,0 +1,40 @@
+.main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding-bottom: 1rem;
+}
+
+input {
+    margin-left: 1.5rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    background: #202020;
+    border: none;
+}
+.containerButton {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2.5rem;
+}
+button {
+    border-radius: 0.4rem;
+    padding: 0.6rem 0.9rem;
+    background: #202020;
+    border: none;
+}
+button:hover {
+    cursor: pointer;
+    border: 1.5px solid darkblue;
+}
+.senha {
+    padding-top: 1rem;
+    text-align: center;
+}
