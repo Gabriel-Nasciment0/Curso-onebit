@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styles from "./style.module.css"
 
-export default function geradorSenhas(props) {
+export default function GeradorSenhas(props) {
     const [senha, setSenha] = useState("")
     const [textoBotao, setTextoBotao] = useState("Copiar")
 

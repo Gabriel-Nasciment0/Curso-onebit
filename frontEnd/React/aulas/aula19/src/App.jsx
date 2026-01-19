@@ -1,16 +1,18 @@
 import { useState } from "react"
-import styles from "./style.module.css"
+import styles from "./css/App.module.css"
+import Input from "./components/inputs"
 
-export default function GeradorSenhas(props) {
+export default function App() {
     const [senha, setSenha] = useState("")
     const [textoBotao, setTextoBotao] = useState("Copiar")
-    const [passwordSize, setPassworldSize] = useState(12)
+    const [passwordSize, setPasswordSize] = useState(12)
 
     function Gerar() {
         const letraMinuscula = "abcdefghijklmnopqrstuvwxyz".split("")
         const letraMaiuscula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
         const numeros = "0123456789".split("")
         const simbolos = "!@#$%^&*()-_=+[]{}<>?/".split("")
+
         const caracteres = [
             ...letraMinuscula,
             ...letraMaiuscula,
@@ -20,18 +22,17 @@ export default function GeradorSenhas(props) {
 
         let senhaGerada = ""
 
-        for (let index = 0; index < passwordSize; index++) {
-            const senhaAleatoria = Math.floor(Math.random() * caracteres.length)
-
-            const caractere = caracteres[senhaAleatoria]
-
-            senhaGerada += caractere
+        for (let i = 0; i < passwordSize; i++) {
+            const index = Math.floor(Math.random() * caracteres.length)
+            senhaGerada += caracteres[index]
         }
+
         setSenha(senhaGerada)
         setTextoBotao("Copiar")
     }
 
     function Copiar() {
+        if (!senha) return
         navigator.clipboard.writeText(senha)
         setTextoBotao("Copiado!")
     }
@@ -39,24 +40,24 @@ export default function GeradorSenhas(props) {
     return (
         <div className={styles.main}>
             <div className={styles.container}>
-                <h1 className={styles.title}>{props.title}</h1>
+                <h1 className={styles.title}>Gerador de senhas</h1>
+
                 <div>
                     <label htmlFor="passwordSize">Caracteres:</label>
-                    <input
-                        type="number"
-                        id="passwordSize"
-                        min={1}
-                        value={passwordSize}
-                        onChange={(ev) => setPassworldSize(ev.target.value)}
+                    <Input
+                        passwordSize={passwordSize}
+                        setPasswordSize={setPasswordSize}
                     />
                 </div>
+
                 <div className={styles.containerButton}>
                     <button
                         className={styles.gerar}
                         onClick={Gerar}
                     >
-                        {props.gerar}
+                        Gerar
                     </button>
+
                     <button
                         className={styles.copiar}
                         onClick={Copiar}
@@ -64,6 +65,7 @@ export default function GeradorSenhas(props) {
                         {textoBotao}
                     </button>
                 </div>
+
                 <p className={styles.senha}>{senha}</p>
             </div>
         </div>
