@@ -1,12 +1,14 @@
-import './css/App.css'
+import "./css/App.css"
 
 function App() {
-
-  return (
-    <>
-     
-    </>
-  )
+    return (
+        <>
+            <div id="app">
+                <h1>Seção de comentários</h1>
+                
+            </div>
+        </>
+    )
 }
 
 export default App
