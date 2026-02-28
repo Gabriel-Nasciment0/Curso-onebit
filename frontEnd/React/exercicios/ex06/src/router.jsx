@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import CreateItem from "./src/pages/CreateItem"
-import Dashboard from "./src/pages/Dashboard"
-import ItemDetails from "./src/pages/ItemDetails"
-import ItemList from "./src/pages/ItemsList"
-import RootLayout from "./src/pages/RootLayout"
-import UpdateItem from "./src/pages/UpdateItem"
+import RootLayout from "./pages/RootLayout.jsx"
+import Dashboard from "./pages/Dashboard.jsx"
+import ItemsList from "./pages/ItemsList.jsx"
+import CreateItem from "./pages/CreateItem.jsx"
+import ItemDetails from "./pages/ItemDetails.jsx"
+import UpdateItem from "./pages/UpdateItem.jsx"
 
-import { loadItem } from "./src/loaders/item"
-import ItemBoundary from "./src/Error-boundaries/ItemBoundary"
+import { loadItem } from "./loaders/items.js"
+import ItemBoundary from "./Error-boundaries/ItemBoundary.jsx"
 
 const router = createBrowserRouter([
     {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <Dashboard /> },
 
-            { path: "items", element: <ItemList /> },
+            { path: "items", element: <ItemsList /> },
 
             {
                 path: "items/:itemId",
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
                 errorElement: <ItemBoundary />,
             },
 
-            { path: "item/new", element: <CreateItem /> },
+            { path: "items/new", element: <CreateItem /> },
 
             {
                 path: "items/:itemId/edit",
