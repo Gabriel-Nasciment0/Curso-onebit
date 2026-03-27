@@ -1,5 +1,5 @@
 import { useItems } from "../hooks/useItems"
-
+import styles from "./Dashboard.module.css"
 export default function Dashboard() {
     const { items } = useItems()
 
@@ -16,11 +16,27 @@ export default function Dashboard() {
 
     return (
         <>
-            <h1>Dashboard</h1>
-            <p>Tipos diferentes: {totalTypes}</p>
-            <p>Total em estoque: {totalStock}</p>
-            <p>Ùltimos 10 dias: {lastTenDays.length}</p>
-            <p>Estoque baixo: {lowStock.length}</p>
+            <div className={styles.container}>
+                <h1>Dashboard</h1>
+                <div className={styles.cards}>
+                    <div className={styles.card}>
+                        <p>Tipos diferentes:</p>
+                        <p>{totalTypes}</p>
+                    </div>
+                    <div className={styles.card}>
+                        <p>Total em estoque:</p>
+                        <p>{totalStock}</p>
+                    </div>
+                    <div className={styles.card}>
+                        <p>Ùltimos 10 dias:</p>
+                        <p>{lastTenDays.length}</p>
+                    </div>
+                    <div className={styles.card}>
+                        <p>Estoque baixo:</p>
+                        <p>{lowStock.length}</p>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

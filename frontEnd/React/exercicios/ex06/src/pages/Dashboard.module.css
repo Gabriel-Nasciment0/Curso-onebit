@@ -1,0 +1,27 @@
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 1rem;
+}
+
+.container h1 {
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+.card {
+    height: 120px;
+    width: 300px;
+    padding: 0.8rem;
+    background: #181818;
+}
+.card p:first-child {
+    font-size: 0.8rem;
+}
+.card p:last-child {
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}

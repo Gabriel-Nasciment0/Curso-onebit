@@ -21,7 +21,7 @@ export default function UpdateItem() {
             description: formData.get("description"),
         }
         updateItem(updated)
-        navigate(`/item/${item.id}`)
+        navigate(`/items/${item.id}`)
     }
 
     return (

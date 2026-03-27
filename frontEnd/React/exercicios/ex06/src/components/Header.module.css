@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    padding-top: 0.5rem;
+}
+h1 {
+    font-size: 16px;
+    font-weight: bolder;
+}
+.link {
+    margin: 0 0.2rem;
+    color: var(--color-font);
+    text-decoration: none;
+}
+.link:hover {
+    text-decoration: underline;
+}
