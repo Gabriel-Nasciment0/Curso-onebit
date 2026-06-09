@@ -1,0 +1,41 @@
+body {
+    font-family: var(--font-roboto);
+}
+
+.page {
+    background-color: #232323;
+    color: #f1f1f1;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+}
+
+.header {
+    margin-bottom: 2rem;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        list-style: none;
+
+        a {
+            color: #d28fff;
+        }
+    }
+}
+
+.main {
+    border: 1px solid #f1f1f1;
+    border-radius: 0.5rem;
+    display: grid;
+    padding: 2rem;
+
+    h1 {
+        font-family: var(--font-quicksand);
+    }
+
+    ul {
+        margin-bottom: 0.5rem;
+    }
+}
