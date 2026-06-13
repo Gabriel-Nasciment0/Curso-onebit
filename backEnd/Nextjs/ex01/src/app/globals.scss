@@ -1,0 +1,48 @@
+/* Reset básico */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-montserrat), sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+}
+
+/* Variáveis globais */
+
+:root {
+    --color-primary: #0071e3;
+    --color-background: #f5f5f7;
+
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+    --color-text-body: #424245;
+
+    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+    --transition: 0.3s ease;
+    --radius-pill: 999px;
+    --radius-card: 24px;
+
+    --container-width: 1200px;
+}

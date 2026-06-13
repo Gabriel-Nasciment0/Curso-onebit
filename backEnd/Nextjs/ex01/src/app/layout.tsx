@@ -1,9 +1,14 @@
+import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
-
+import "./globals.scss"
+export const metadata: Metadata = {
+    title: "Criado por: nextJs",
+    description: "Exemplo de layout e page usando nextJs",
+}
 const montserrat = Montserrat({
-    subsets: ["latin"],
     variable: "--font-montserrat",
-    weight: ["400"],
+    subsets: ["latin"],
+    weight: ["400", "700"],
 })
 
 export default function RootLayout({
