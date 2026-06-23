@@ -1,4 +1,3 @@
-import data from "@/data/spaceships.json"
 import Link from "next/link"
 
 const categories = [
@@ -15,18 +14,11 @@ const categories = [
 const formatSlug = (value: string) =>
     value.toLowerCase().replace(/\s+/g, "-").trim()
 
-type Props = {
-    params: { category: string }
-}
-
-export default function Categoria({ params }: Props) {
-    const filtered = data.filter(
-        (item) => formatSlug(item.category) === params.category,
-    )
-
+export default function categoriasIndex() {
     return (
         <main>
-            <h1>Categorias</h1>
+            <h1>Categorias de Naves</h1>
+            <p>Explore as naves por categoria:</p>
 
             <div>
                 {categories.map((cat) => (
@@ -39,19 +31,7 @@ export default function Categoria({ params }: Props) {
                 ))}
             </div>
 
-            <div>
-                <h2>Categoria: {params.category}</h2>
-
-                {filtered.length > 0 ? (
-                    filtered.map((item) => (
-                        <div key={item.id}>
-                            <h3>{item.name}</h3>
-                        </div>
-                    ))
-                ) : (
-                    <p>Nenhuma nave encontrada nessa categoria.</p>
-                )}
-            </div>
+            <Link href="/naves">← Voltar para todas as naves</Link>
         </main>
     )
 }

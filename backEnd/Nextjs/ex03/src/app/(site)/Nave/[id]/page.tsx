@@ -39,19 +39,19 @@ export default async function Nave({ params }: Props) {
 
             <div className={styles.navigation}>
                 {prevItem ? (
-                    <Link href={`/Nave/${prevItem.id}`}>⬅ Anterior</Link>
+                    <Link href={`/nave/${prevItem.id}`}>⬅ Anterior</Link>
                 ) : (
                     <button disabled>⬅ Anterior</button>
                 )}
 
                 {nextItem ? (
-                    <Link href={`/Nave/${nextItem.id}`}>Próxima ➡</Link>
+                    <Link href={`/nave/${nextItem.id}`}>Próxima ➡</Link>
                 ) : (
                     <button disabled>Próxima ➡</button>
                 )}
             </div>
 
-            <Link href="/Naves">Voltar Para Espaçonaves</Link>
+            <Link href="/naves">Voltar Para Espaçonaves</Link>
         </main>
     )
 }

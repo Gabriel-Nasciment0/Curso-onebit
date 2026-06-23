@@ -7,7 +7,7 @@ export default function Home() {
             <main className={styles.MainContainer}>
                 <h1>Conheça as Naves Do Universo Star Wars</h1>
 
-                <Link href="./page.tsx">Ver Todas</Link>
+                <Link href="/naves">Ver Todas</Link>
             </main>
         </div>
     )
