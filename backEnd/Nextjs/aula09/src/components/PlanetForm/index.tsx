@@ -1,15 +1,11 @@
-import { FormEventHandler } from "react"
+import { createPlanetAction } from "@/actions/planets.actions"
 import styles from "./style.module.css"
 
-interface PlanetFormProps {
-    onSubmit: FormEventHandler<HTMLFormElement>
-}
-
-export function PlanetForm({ onSubmit }: PlanetFormProps) {
+export function PlanetForm() {
     return (
         <form
+            action={createPlanetAction}
             className={styles.planetForm}
-            onSubmit={onSubmit}
         >
             <div>
                 <label htmlFor="name">Nome</label>
