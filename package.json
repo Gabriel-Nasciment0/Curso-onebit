@@ -1,0 +1,21 @@
+{
+  "name": "curso-onebit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabriel-Nasciment0/Curso-onebit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gabriel-Nasciment0/Curso-onebit/issues"
+  },
+  "homepage": "https://github.com/Gabriel-Nasciment0/Curso-onebit#readme"
+}
