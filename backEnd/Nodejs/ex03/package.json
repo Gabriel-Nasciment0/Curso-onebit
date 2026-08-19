@@ -1,0 +1,12 @@
+{
+  "name": "notes-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aplicacao de terminal para gerenciar anotacoes rapidas.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
