@@ -1,0 +1,15 @@
+
+// ...
+
+  res.render('index', { title, message })
+
+
+app.get('/formulario', (req, res) => {
+  res.render('form')
+})
+
+const PORT = 3000
+
+app.listen(PORT, () => {
+  console.log('Servidor iniciado!')
+})
