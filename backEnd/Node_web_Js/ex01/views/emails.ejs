@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-mails cadastrados</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <main class="container">
+    <h1>E-mails cadastrados</h1>
+
+    <% if (emails.length === 0) { %>
+
+      <p>Nenhum e-mail cadastrado.</p>
+
+    <% } else { %>
+
+      <ul>
+        <% emails.forEach(email => { %>
+
+          <li>
+            <span><%= email %></span>
+
+            <form action="/emails/excluir" method="POST">
+              <input
+                type="hidden"
+                name="email"
+                value="<%= email %>"
+              >
+
+              <button type="submit">
+                Excluir
+              </button>
+            </form>
+          </li>
+
+        <% }) %>
+      </ul>
+
+    <% } %>
+
+    <a href="/">
+      Voltar para o cadastro
+    </a>
+  </main>
+
+</body>
+</html>
