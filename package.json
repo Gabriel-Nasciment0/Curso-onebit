@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/Gabriel-Nasciment0/Curso-onebit/issues"
   },
-  "homepage": "https://github.com/Gabriel-Nasciment0/Curso-onebit#readme"
+  "homepage": "https://github.com/Gabriel-Nasciment0/Curso-onebit#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
 }
