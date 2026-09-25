@@ -1,0 +1,17 @@
+{
+    "name": "ex02",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "ejs": "^6.0.1",
+        "express": "^5.2.1"
+    }
+}
