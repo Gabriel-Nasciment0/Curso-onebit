@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/customers"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Cliente Teste API",
+      "email": "cliente.teste.api@example.com"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 201 Created", () => pm.response.to.have.status(201));
+      const data = pm.response.json();
+      pm.test("Retorna cliente com campos principais", () => {
+        pm.expect(data).to.have.property("id");
+        pm.expect(data.name).to.eql("Cliente Teste API");
+        pm.expect(data.email).to.eql("cliente.teste.api@example.com");
+      });
+      if (data.id !== undefined) pm.collectionVariables.set("customerId", String(data.id));
+    language: text/javascript
+order: 1000

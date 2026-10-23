@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/customers"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Outro Cliente",
+      "email": "{{duplicateEmail}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 409 Conflict", () => pm.response.to.have.status(409));
+      pm.test("Retorna mensagem de erro", () => pm.expect(pm.response.json()).to.have.property("error"));
+    language: text/javascript
+order: 8000

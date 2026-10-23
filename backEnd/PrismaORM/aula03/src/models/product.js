@@ -1,75 +1,94 @@
 const { query } = require("../database")
 
-class product {
+class Product {
     constructor(productRow) {
         this.id = productRow.id
         this.name = productRow.name
         this.description = productRow.description
-        this.price = +productRow.price
+        this.price = Number(productRow.price)
         this.stockQuantity = productRow.stock_quantity
         this.isActive = productRow.is_active
-        this.createdAt = new Date(productRow.created_at)
-        this.updatedAt = new Date(productRow.updated_at)
+        this.createdAt = productRow.created_at
+        this.updatedAt = productRow.updated_at
     }
 
     static async findAll() {
-        const result = await query(`SELECT * FROM products;`)
+        const result = await query("SELECT * FROM products ORDER BY id")
+
         return result.rows.map((row) => new Product(row))
     }
 
-    static async create({ name, description, price, stockQuantity, isActive }) {
-        const result = await query(
-            `INSERT INTO products (name, description, price, stock_quantity, is_active)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *`,
-            [name, description, price, stockQuantity, isActive],
-        )
-        return new Product(result.rows[0])
+    static async findById(id) {
+        const result = await query("SELECT * FROM products WHERE id = $1", [id])
+
+        return result.rows[0] ? new Product(result.rows[0]) : null
     }
 
-    static async findById(id) {
-        const result = await query(`SELECT * FROM products WHERE id = $1`, [id])
-        if (!result.rows[0]) return null
+    static async create({
+        name,
+        description,
+        price,
+        stockQuantity,
+        isActive = true,
+    }) {
+        const result = await query(
+            `INSERT INTO products
+                (name, description, price, stock_quantity, is_active)
+             VALUES ($1, $2, $3, $4, $5)
+             RETURNING *`,
+            [name, description, price, stockQuantity, isActive],
+        )
+
         return new Product(result.rows[0])
     }
 
     static async update(id, attributes) {
-        const { rows } = await query(`SELECT * FROM products WHERE id = $1`, [
-            id,
-        ])
-        if (!rows[0]) return null
+        const currentProduct = await Product.findById(id)
 
-        const product = new Product(rows[0])
+        if (!currentProduct) {
+            return null
+        }
 
-        Object.assign(product, attributes)
-        product.updatedAt = new Date()
+        const updatedProduct = {
+            name: attributes.name ?? currentProduct.name,
+            description: attributes.description ?? currentProduct.description,
+            price: attributes.price ?? currentProduct.price,
+            stockQuantity:
+                attributes.stockQuantity ?? currentProduct.stockQuantity,
+            isActive: attributes.isActive ?? currentProduct.isActive,
+        }
 
-        await query(
-            `UPDATE products SET
-        name = $1,
-        description = $2,
-        price = $3,
-        stock_quantity = $4,
-        is_active = $5,
-        updated_at = CURRENT_TIMESTAMP
-      WHERE id = $6;`,
+        const result = await query(
+            `UPDATE products
+             SET name = $1,
+                 description = $2,
+                 price = $3,
+                 stock_quantity = $4,
+                 is_active = $5,
+                 updated_at = CURRENT_TIMESTAMP
+             WHERE id = $6
+             RETURNING *`,
             [
-                product.name,
-                product.description,
-                product.price,
-                product.stockQuantity,
-                product.isActive,
-                product.id,
+                updatedProduct.name,
+                updatedProduct.description,
+                updatedProduct.price,
+                updatedProduct.stockQuantity,
+                updatedProduct.isActive,
+                id,
             ],
         )
 
-        return product
+        return new Product(result.rows[0])
     }
 
     static async delete(id) {
-        await query(`DELETE FROM products WHERE id = $1`, [id])
-        return { message: "Product deleted successfully." }
+        const result = await query(
+            "DELETE FROM products WHERE id = $1 RETURNING *",
+            [id],
+        )
+
+        return result.rows[0] ? new Product(result.rows[0]) : null
     }
 }
 
-module.exports = product
+module.exports = Product

@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 1260e588-f8cf-4915-8c04-4cc564cae86d
+
+cloudResources:
+  collections:
+    ../postman/collections/API Express PostgreSQL - Produtos e Clientes: d20acb12-2491-4f55-ae62-ff137bf7e095
+
+# All resources in the `postman/` folder are automatically registered in Local View.
+# Point to additional files outside the `postman/` folder to register them individually. Example:
+#localResources:
+#  collections:
+#    - ../tests/E2E Test Collection/

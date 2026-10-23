@@ -1,0 +1,8 @@
+$kind: collection
+description: Testes CRUD de produtos e clientes. Execute com o servidor em http://localhost:5000 e o banco PostgreSQL configurado.
+variables:
+  baseUrl: http://localhost:5000/api
+  productId: ""
+  customerId: ""
+  duplicateEmail: teste.duplicado@example.com
+  duplicateCustomerId: ""

@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/customers/{{duplicateCustomerId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: pm.test("Status 200 OK ou 404 se já foi removido", () => pm.expect([200, 404]).to.include(pm.response.code));
+    language: text/javascript
+order: 11000

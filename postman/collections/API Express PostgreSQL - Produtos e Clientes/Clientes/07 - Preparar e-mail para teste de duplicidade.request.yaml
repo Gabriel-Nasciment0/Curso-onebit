@@ -1,0 +1,27 @@
+$kind: http-request
+url: "{{baseUrl}}/customers"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Cliente E-mail Único",
+      "email": "{{duplicateEmail}}"
+    }
+scripts:
+  - type: beforeRequest
+    code: |-
+      // Gera um e-mail diferente a cada execução para permitir repetir a coleção.
+      const uniqueEmail = `teste.${Date.now()}@example.com`;
+      pm.collectionVariables.set('duplicateEmail', uniqueEmail);
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test("Status 201 Created", () => pm.response.to.have.status(201));
+      if (pm.response.code === 201 && pm.response.json().id !== undefined) {
+        pm.collectionVariables.set("duplicateCustomerId", String(pm.response.json().id));
+      }
+    language: text/javascript
+order: 7000

@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/customers/{{customerId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Cliente Teste Atualizado",
+      "email": "cliente.atualizado.api@example.com"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 200 OK", () => pm.response.to.have.status(200));
+      const data = pm.response.json();
+      pm.test("Dados foram atualizados", () => {
+        pm.expect(data.name).to.eql("Cliente Teste Atualizado");
+        pm.expect(data.email).to.eql("cliente.atualizado.api@example.com");
+      });
+    language: text/javascript
+order: 4000

@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/products/999999999"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 404 Not Found", () => pm.response.to.have.status(404));
+      pm.test("Retorna mensagem de erro", () => pm.expect(pm.response.json()).to.have.property("error"));
+    language: text/javascript
+order: 6000
