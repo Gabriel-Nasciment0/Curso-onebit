@@ -1,0 +1,324 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "teste",
+    "version": "1.0.0",
+    "description": "Testes CRUD de produtos e clientes. Execute com o servidor em http://localhost:5000 e o banco PostgreSQL configurado."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api"
+    },
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "01 - Cadastrar produto",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "stockQuantity": {
+                    "type": "integer"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "example": {
+                "name": "Produto Teste API",
+                "description": "Criado pelo Postman",
+                "price": 49.9,
+                "stockQuantity": 10,
+                "isActive": true
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "02 - Listar produtos",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ]
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "summary": "03 - Consultar produto criado",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "productId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "put": {
+        "summary": "04 - Atualizar produto",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "stockQuantity": {
+                    "type": "integer"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "example": {
+                "name": "Produto Teste Atualizado",
+                "description": "Descrição atualizada",
+                "price": 59.9,
+                "stockQuantity": 7,
+                "isActive": true
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "07 - Excluir produto criado",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ]
+      }
+    },
+    "/products/999999999": {
+      "get": {
+        "summary": "06 - Produto inexistente retorna 404",
+        "responses": {},
+        "tags": [
+          "Produtos"
+        ]
+      }
+    },
+    "/customers": {
+      "post": {
+        "summary": "01 - Cadastrar cliente",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              },
+              "example": {
+                "name": "Cliente Teste API",
+                "email": "cliente.teste.api@example.com"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "02 - Listar clientes",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ]
+      }
+    },
+    "/customers/{customerId}": {
+      "get": {
+        "summary": "03 - Consultar cliente criado",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "customerId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "put": {
+        "summary": "04 - Atualizar cliente",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              },
+              "example": {
+                "name": "Cliente Teste Atualizado",
+                "email": "cliente.atualizado.api@example.com"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "09 - Excluir cliente criado",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ]
+      }
+    },
+    "/customers/999999999": {
+      "get": {
+        "summary": "06 - Cliente inexistente retorna 404",
+        "responses": {},
+        "tags": [
+          "Clientes"
+        ]
+      }
+    },
+    "/api/orders": {
+      "post": {
+        "summary": "Criar pedido",
+        "responses": {},
+        "tags": [
+          "Pedidos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "integer"
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "customerId": 1,
+                "products": [
+                  {
+                    "id": 1,
+                    "quantity": 2
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar todos os pedidos",
+        "responses": {},
+        "tags": [
+          "Pedidos"
+        ]
+      }
+    },
+    "/api/orders/1": {
+      "get": {
+        "summary": "Buscar pedido por ID",
+        "responses": {},
+        "tags": [
+          "Pedidos"
+        ]
+      },
+      "delete": {
+        "summary": "Excluir pedido",
+        "responses": {},
+        "tags": [
+          "Pedidos"
+        ]
+      }
+    },
+    "/api/orders/999999999": {
+      "get": {
+        "summary": "Testar busca por pedido inexistente",
+        "responses": {},
+        "tags": [
+          "Pedidos"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+$kind: http-request
+url: http://localhost:5000/api/orders
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"customerId\": 1,\r
+
+    \  \"products\": [\r
+
+    \    {\r
+
+    \      \"id\": 999999999,\r
+
+    \      \"quantity\": 2\r
+
+    \    }\r
+
+    \  ]\r
+
+    }"
+order: 7000

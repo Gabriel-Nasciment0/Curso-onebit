@@ -1,5 +1,0 @@
-$kind: http-request
-url: http://localhost:5000/api/customers
-method: POST
-examples: .resources/Cadastrar cliente.resources/examples
-order: 1000
