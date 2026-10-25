@@ -1,0 +1,44 @@
+$kind: http-request
+url: http://localhost:3000/posts
+method: GET
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test(\"Status deve ser 200\", () => {\r
+
+      \    pm.response.to.have.status(200)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Resposta deve ser uma lista de posts\", () => {\r
+
+      \    const body = pm.response.json()\r
+
+      \    pm.expect(body).to.be.an(\"array\")\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Cada post deve conter os campos esperados\", () => {\r
+
+      \    const posts = pm.response.json()\r
+
+      \r
+
+      \    posts.forEach((post) => {\r
+
+      \        pm.expect(post).to.have.property(\"id\")\r
+
+      \        pm.expect(post).to.have.property(\"title\")\r
+
+      \        pm.expect(post).to.have.property(\"published\")\r
+
+      \    })\r
+
+      })\r\n"
+    language: text/javascript
+order: 1000

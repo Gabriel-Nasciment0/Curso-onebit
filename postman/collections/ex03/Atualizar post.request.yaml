@@ -1,0 +1,53 @@
+$kind: http-request
+url: http://localhost:3000/posts/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Post atualizado\",\r
+
+    \  \"published\": true\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test(\"Status deve ser 200\", () => {\r
+
+      \    pm.response.to.have.status(200)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Post deve ter sido atualizado\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \r
+
+      \    pm.expect(post.id).to.eql(\r
+
+      \        Number(pm.environment.get(\"postId\"))\r
+
+      \    )\r
+
+      \    pm.expect(post.title).to.eql(\"Post atualizado\")\r
+
+      \    pm.expect(post.published).to.eql(true)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Conteúdo anterior deve ser preservado\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \    pm.expect(post.content).to.eql(\"Testando a API\")\r
+
+      })\r\n"
+    language: text/javascript
+order: 4000

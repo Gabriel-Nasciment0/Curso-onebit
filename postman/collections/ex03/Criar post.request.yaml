@@ -1,0 +1,59 @@
+$kind: http-request
+url: http://localhost:3000/posts
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"Post de teste\",\r
+
+    \  \"content\": \"Testando a API\",\r
+
+    \  \"published\": false\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test(\"Status deve ser 201\", () => {\r
+
+      \    pm.response.to.have.status(201)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Post deve ser criado com os dados corretos\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \r
+
+      \    pm.expect(post).to.have.property(\"id\")\r
+
+      \    pm.expect(post.id).to.be.a(\"number\")\r
+
+      \    pm.expect(post.title).to.eql(\"Post de teste\")\r
+
+      \    pm.expect(post.content).to.eql(\"Testando a API\")\r
+
+      \    pm.expect(post.published).to.eql(false)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Post criado deve ter um ID válido\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \    pm.expect(post.id).to.be.above(0)\r
+
+      \r
+
+      \    pm.environment.set(\"postId\", post.id)\r
+
+      })\r\n"
+    language: text/javascript
+order: 3000

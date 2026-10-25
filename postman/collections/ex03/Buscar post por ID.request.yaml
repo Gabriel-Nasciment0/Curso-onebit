@@ -1,0 +1,42 @@
+$kind: http-request
+url: http://localhost:3000/posts/1
+method: GET
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test(\"Status deve ser 200\", () => {\r
+
+      \    pm.response.to.have.status(200)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Resposta deve conter um post\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \r
+
+      \    pm.expect(post).to.be.an(\"object\")\r
+
+      \    pm.expect(post).to.have.property(\"id\")\r
+
+      \    pm.expect(post).to.have.property(\"title\")\r
+
+      \    pm.expect(post).to.have.property(\"published\")\r
+
+      })\r
+
+      \r
+
+      pm.test(\"ID retornado deve ser o solicitado\", () => {\r
+
+      \    const post = pm.response.json()\r
+
+      \    pm.expect(post.id).to.eql(1)\r
+
+      })\r\n"
+    language: text/javascript
+order: 2000

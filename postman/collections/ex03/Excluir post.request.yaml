@@ -1,0 +1,22 @@
+$kind: http-request
+url: http://localhost:3000/posts/1
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "\r
+
+      pm.test(\"Deve retornar status 204\", () => {\r
+
+      \    pm.response.to.have.status(204)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"A resposta não deve conter conteúdo\", () => {\r
+
+      \    pm.expect(pm.response.text()).to.eql(\"\")\r
+
+      })\r\n"
+    language: text/javascript
+order: 5000
