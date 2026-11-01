@@ -21,6 +21,6 @@ export const GroupLeadParamsSchema = z.object({
 })
 
 // Validação do corpo da requisição POST
-export const AddLeadToGroupRequestSchema = z.object({
+export const AddLeadRequestSchema = z.object({
     leadId: z.coerce.number().int().positive(),
 })
