@@ -1,13 +1,19 @@
 import { Handler } from "express"
-import { Prisma } from "@prisma/client"
 import {
     AddLeadRequestSchema,
     GetCampaignLeadsRequestSchema,
     UpdateLeadStatusRequestSchema,
 } from "./schemas/CampaignsRequestSchema"
-import { prisma } from "../database"
+import {
+    CampaignLeadWhereParams,
+    CampaignLeadsRepository,
+} from "../repositories/CampaignLeadsRepository"
 
 export class CampaignLeadsController {
+    constructor(
+        private readonly campaignLeadsRepository: CampaignLeadsRepository,
+    ) {}
+
     getLeads: Handler = async (req, res, next) => {
         try {
             const campaignId = Number(req.params.campaignId)
@@ -24,32 +30,21 @@ export class CampaignLeadsController {
             const pageNumber = Number(page)
             const pageSizeNumber = Number(pageSize)
 
-            const where: Prisma.LeadWhereInput = {
-                campaigns: {
-                    some: { campaignId },
-                },
+            const where: CampaignLeadWhereParams = {
+                campaignId,
+                name,
+                status,
             }
 
-            if (name) where.name = { contains: name, mode: "insensitive" }
-            if (status) where.campaigns = { some: { status } }
-
-            const leads = await prisma.lead.findMany({
+            const leads = await this.campaignLeadsRepository.find({
                 where,
-                orderBy: { [sortBy]: order },
-                skip: (pageNumber - 1) * pageSizeNumber,
-                take: pageSizeNumber,
-                include: {
-                    campaigns: {
-                        select: {
-                            campaignId: true,
-                            leadId: true,
-                            status: true,
-                        },
-                    },
-                },
+                sortBy,
+                order,
+                offset: (pageNumber - 1) * pageSizeNumber,
+                limit: pageSizeNumber,
             })
 
-            const total = await prisma.lead.count({ where })
+            const total = await this.campaignLeadsRepository.count(where)
 
             res.json({
                 leads,
@@ -68,13 +63,11 @@ export class CampaignLeadsController {
     addLead: Handler = async (req, res, next) => {
         try {
             const body = AddLeadRequestSchema.parse(req.body)
-            await prisma.leadCampaign.create({
-                data: {
-                    campaignId: Number(req.params.campaignId),
-                    leadId: body.leadId,
-                    status: body.status,
-                },
-            })
+            await this.campaignLeadsRepository.addLead(
+                Number(req.params.campaignId),
+                body.leadId,
+                body.status,
+            )
             res.status(201).end()
         } catch (error) {
             next(error)
@@ -84,15 +77,12 @@ export class CampaignLeadsController {
     updateLeadStatus: Handler = async (req, res, next) => {
         try {
             const body = UpdateLeadStatusRequestSchema.parse(req.body)
-            const updatedLeadCampaign = await prisma.leadCampaign.update({
-                data: body,
-                where: {
-                    leadId_campaignId: {
-                        campaignId: Number(req.params.campaignId),
-                        leadId: Number(req.params.leadId),
-                    },
-                },
-            })
+            const updatedLeadCampaign =
+                await this.campaignLeadsRepository.updateLeadStatus(
+                    Number(req.params.campaignId),
+                    Number(req.params.leadId),
+                    body.status,
+                )
             res.json(updatedLeadCampaign)
         } catch (error) {
             next(error)
@@ -101,14 +91,11 @@ export class CampaignLeadsController {
 
     removeLead: Handler = async (req, res, next) => {
         try {
-            const removedLead = await prisma.leadCampaign.delete({
-                where: {
-                    leadId_campaignId: {
-                        campaignId: Number(req.params.campaignId),
-                        leadId: Number(req.params.leadId),
-                    },
-                },
-            })
+            const removedLead =
+                await this.campaignLeadsRepository.removeLead(
+                    Number(req.params.campaignId),
+                    Number(req.params.leadId),
+                )
             res.json({ removedLead })
         } catch (error) {
             next(error)
