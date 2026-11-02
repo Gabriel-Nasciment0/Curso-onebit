@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/api/status"
+method: GET
+scripts:
+  - type: beforeRequest
+    code: |-
+      const runId = `${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+      pm.collectionVariables.set('runId', runId);
+      pm.collectionVariables.set('leadId', '');
+      pm.collectionVariables.set('groupId', '');
+      pm.collectionVariables.set('campaignId', '');
+      pm.collectionVariables.set('leadName', `Postman_Lead_${runId}`);
+      pm.collectionVariables.set('leadEmail', `postman-${runId}@example.com`);
+      pm.collectionVariables.set('groupName', `Postman Group ${runId}`);
+      pm.collectionVariables.set('campaignName', `Postman Campaign ${runId}`);
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test('Retorna status da API', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json()).to.deep.equal({ message: 'OK' });
+      });
+    language: text/javascript
+order: 1000

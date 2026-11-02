@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads/{{leadId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "Qualified"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Atualiza lead após contato', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().status).to.eql('Qualified');
+          pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get('leadName'));
+      });
+    language: text/javascript
+order: 7000

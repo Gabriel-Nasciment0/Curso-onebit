@@ -1,0 +1,26 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{leadName}}",
+      "email": "{{leadEmail}}",
+      "phone": "+55 11 99999-0000"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Cria lead com status New por padrão', function () {
+          pm.response.to.have.status(201);
+          const lead = pm.response.json();
+          pm.expect(lead).to.have.property('id');
+          pm.expect(lead.name).to.eql(pm.collectionVariables.get('leadName'));
+          pm.expect(lead.status).to.eql('New');
+          pm.collectionVariables.set('leadId', String(lead.id));
+      });
+    language: text/javascript
+order: 2000

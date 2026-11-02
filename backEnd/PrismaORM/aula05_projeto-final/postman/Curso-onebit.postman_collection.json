@@ -1,0 +1,830 @@
+{
+    "info": {
+        "_postman_id": "d410903d-e0ce-4a64-a61d-2d888017a013",
+        "name": "Curso-onebit API",
+        "description": "Testes de integração da API Express. Execute a coleção em ordem usando o Collection Runner.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000"
+        },
+        {
+            "key": "runId",
+            "value": ""
+        },
+        {
+            "key": "leadId",
+            "value": ""
+        },
+        {
+            "key": "groupId",
+            "value": ""
+        },
+        {
+            "key": "campaignId",
+            "value": ""
+        },
+        {
+            "key": "leadName",
+            "value": ""
+        },
+        {
+            "key": "leadEmail",
+            "value": ""
+        },
+        {
+            "key": "groupName",
+            "value": ""
+        },
+        {
+            "key": "campaignName",
+            "value": ""
+        }
+    ],
+    "item": [
+        {
+            "name": "00 - Status",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const runId = `${Date.now()}-${Math.floor(Math.random() * 100000)}`;",
+                            "pm.collectionVariables.set('runId', runId);",
+                            "pm.collectionVariables.set('leadId', '');",
+                            "pm.collectionVariables.set('groupId', '');",
+                            "pm.collectionVariables.set('campaignId', '');",
+                            "pm.collectionVariables.set('leadName', `Postman_Lead_${runId}`);",
+                            "pm.collectionVariables.set('leadEmail', `postman-${runId}@example.com`);",
+                            "pm.collectionVariables.set('groupName', `Postman Group ${runId}`);",
+                            "pm.collectionVariables.set('campaignName', `Postman Campaign ${runId}`);"
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Retorna status da API', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json()).to.deep.equal({ message: 'OK' });",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/status"
+            }
+        },
+        {
+            "name": "01 - Criar lead",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Cria lead com status New por padrão', function () {",
+                            "    pm.response.to.have.status(201);",
+                            "    const lead = pm.response.json();",
+                            "    pm.expect(lead).to.have.property('id');",
+                            "    pm.expect(lead.name).to.eql(pm.collectionVariables.get('leadName'));",
+                            "    pm.expect(lead.status).to.eql('New');",
+                            "    pm.collectionVariables.set('leadId', String(lead.id));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"{{leadName}}\",\n  \"email\": \"{{leadEmail}}\",\n  \"phone\": \"+55 11 99999-0000\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/leads"
+            }
+        },
+        {
+            "name": "02 - Listar leads com paginação e filtro",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Lista leads e retorna metadados de paginação', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const result = pm.response.json();",
+                            "    pm.expect(result.leads).to.be.an('array');",
+                            "    pm.expect(result.meta).to.include({ page: 1, pageSize: 10 });",
+                            "    pm.expect(result.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/leads?page=1&pageSize=10&name={{leadName}}&sortBy=name&order=asc"
+            }
+        },
+        {
+            "name": "03 - Buscar lead por ID",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Retorna o lead criado', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('leadId')));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "04 - Impedir New direto para Qualified",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Aplica a regra de ciclo de vida do lead', function () {",
+                            "    pm.response.to.have.status(400);",
+                            "    pm.expect(pm.response.json().message).to.be.a('string');",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"status\": \"Qualified\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "05 - Contatar lead",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Permite a transição New para Contacted', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().status).to.eql('Contacted');",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"status\": \"Contacted\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "06 - Atualizar lead contatado",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Atualiza lead após contato', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().status).to.eql('Qualified');",
+                        "    pm.expect(pm.response.json().name).to.eql(pm.collectionVariables.get('leadName'));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"status\": \"Qualified\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "07 - Criar grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Cria grupo', function () {",
+                            "    pm.response.to.have.status(201);",
+                            "    const group = pm.response.json();",
+                            "    pm.expect(group).to.have.property('id');",
+                            "    pm.expect(group.name).to.eql(pm.collectionVariables.get('groupName'));",
+                            "    pm.collectionVariables.set('groupId', String(group.id));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"{{groupName}}\",\n  \"description\": \"Grupo criado pela coleção de testes Postman\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/groups"
+            }
+        },
+        {
+            "name": "08 - Listar grupos",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Lista grupos', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const groups = pm.response.json();",
+                            "    pm.expect(groups).to.be.an('array');",
+                            "    pm.expect(groups.some((group) => group.id === Number(pm.collectionVariables.get('groupId')))).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/groups"
+            }
+        },
+        {
+            "name": "09 - Buscar grupo por ID",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Retorna o grupo criado', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('groupId')));",
+                        "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/groups/{{groupId}}"
+            }
+        },
+        {
+            "name": "10 - Atualizar grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Atualiza o nome do grupo', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().name).to.eql(`${pm.collectionVariables.get('groupName')} Updated`);",
+                        "    pm.collectionVariables.set('groupName', `${pm.collectionVariables.get('groupName')} Updated`);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"{{groupName}} Updated\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/groups/{{groupId}}"
+            }
+        },
+        {
+            "name": "11 - Adicionar lead ao grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Associa lead ao grupo', function () {",
+                            "    pm.response.to.have.status(201);",
+                            "    const group = pm.response.json();",
+                            "    pm.expect(group.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"leadId\": {{leadId}}\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/groups/{{groupId}}/leads"
+            }
+        },
+        {
+            "name": "12 - Listar leads do grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Lista lead associado e paginação', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const result = pm.response.json();",
+                            "    pm.expect(result.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(true);",
+                            "    pm.expect(result.meta.total).to.be.at.least(1);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/groups/{{groupId}}/leads?page=1&pageSize=10"
+            }
+        },
+        {
+            "name": "13 - Remover lead do grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Remove associação do grupo', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const group = pm.response.json();",
+                            "    pm.expect(group.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(false);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/api/groups/{{groupId}}/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "14 - Excluir grupo",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Exclui grupo', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().deletedGroup.id).to.eql(Number(pm.collectionVariables.get('groupId')));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/api/groups/{{groupId}}"
+            }
+        },
+        {
+            "name": "15 - Criar campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Cria campanha', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const campaign = pm.response.json();",
+                            "    pm.expect(campaign).to.have.property('id');",
+                            "    pm.expect(campaign.name).to.eql(pm.collectionVariables.get('campaignName'));",
+                            "    pm.collectionVariables.set('campaignId', String(campaign.id));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"{{campaignName}}\",\n  \"description\": \"Campanha criada pela coleção de testes Postman\",\n  \"startDate\": \"2026-01-01T00:00:00.000Z\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/campaigns"
+            }
+        },
+        {
+            "name": "16 - Listar campanhas",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Lista campanhas', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const campaigns = pm.response.json();",
+                            "    pm.expect(campaigns).to.be.an('array');",
+                            "    pm.expect(campaigns.some((campaign) => campaign.id === Number(pm.collectionVariables.get('campaignId')))).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns"
+            }
+        },
+        {
+            "name": "17 - Buscar campanha por ID",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Retorna a campanha criada', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('campaignId')));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}"
+            }
+        },
+        {
+            "name": "18 - Atualizar campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Atualiza a descrição da campanha', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().description).to.eql('Descrição atualizada pelo Postman');",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"description\": \"Descrição atualizada pelo Postman\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}"
+            }
+        },
+        {
+            "name": "19 - Adicionar lead à campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Cria associação lead-campanha', function () {",
+                            "    pm.response.to.have.status(201);",
+                            "    pm.expect(pm.response.text()).to.eql('');",
+                        "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"leadId\": {{leadId}},\n  \"status\": \"New\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}/leads"
+            }
+        },
+        {
+            "name": "20 - Listar leads da campanha com filtros",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Combina campanha, status, nome e paginação', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const result = pm.response.json();",
+                            "    pm.expect(result.meta.total).to.eql(1);",
+                            "    pm.expect(result.meta.page).to.eql(1);",
+                            "    pm.expect(result.leads).to.have.length(1);",
+                            "    const lead = result.leads[0];",
+                            "    pm.expect(lead.id).to.eql(Number(pm.collectionVariables.get('leadId')));",
+                            "    pm.expect(lead.campaigns.some((item) => item.campaignId === Number(pm.collectionVariables.get('campaignId')) && item.status === 'New')).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}/leads?page=1&pageSize=10&name={{leadName}}&status=New&sortBy=name&order=asc"
+            }
+        },
+        {
+            "name": "21 - Atualizar status do lead na campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Atualiza status da associação', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json()).to.include({",
+                            "        campaignId: Number(pm.collectionVariables.get('campaignId')),",
+                            "        leadId: Number(pm.collectionVariables.get('leadId')),",
+                            "        status: 'Engaged'",
+                            "    });",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"status\": \"Engaged\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "22 - Verificar filtro de status da campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Filtra por status sem perder o filtro de campanha', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const result = pm.response.json();",
+                            "    pm.expect(result.meta.total).to.eql(1);",
+                            "    pm.expect(result.leads[0].campaigns.some((item) => item.campaignId === Number(pm.collectionVariables.get('campaignId')) && item.status === 'Engaged')).to.eql(true);",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}/leads?page=1&pageSize=10&status=Engaged"
+            }
+        },
+        {
+            "name": "23 - Remover lead da campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Remove associação lead-campanha', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    const result = pm.response.json();",
+                            "    pm.expect(result.removedLead).to.include({",
+                            "        campaignId: Number(pm.collectionVariables.get('campaignId')),",
+                            "        leadId: Number(pm.collectionVariables.get('leadId'))",
+                            "    });",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}/leads/{{leadId}}"
+            }
+        },
+        {
+            "name": "24 - Excluir campanha",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Exclui campanha sem associações pendentes', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().deletedCampaign.id).to.eql(Number(pm.collectionVariables.get('campaignId')));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/api/campaigns/{{campaignId}}"
+            }
+        },
+        {
+            "name": "25 - Excluir lead",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test('Exclui lead sem associações pendentes', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "    pm.expect(pm.response.json().deletedLead.id).to.eql(Number(pm.collectionVariables.get('leadId')));",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": "{{baseUrl}}/api/leads/{{leadId}}"
+            }
+        }
+    ]
+}

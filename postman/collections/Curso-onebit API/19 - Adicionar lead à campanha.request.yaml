@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns/{{campaignId}}/leads"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "leadId": {{leadId}},
+      "status": "New"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Cria associação lead-campanha', function () {
+          pm.response.to.have.status(201);
+          pm.expect(pm.response.text()).to.eql('');
+      });
+    language: text/javascript
+order: 20000

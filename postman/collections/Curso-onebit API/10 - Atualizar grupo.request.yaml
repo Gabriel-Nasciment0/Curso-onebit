@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups/{{groupId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{groupName}} Updated"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Atualiza o nome do grupo', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().name).to.eql(`${pm.collectionVariables.get('groupName')} Updated`);
+          pm.collectionVariables.set('groupName', `${pm.collectionVariables.get('groupName')} Updated`);
+      });
+    language: text/javascript
+order: 11000

@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups/{{groupId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Retorna o grupo criado', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('groupId')));
+      });
+    language: text/javascript
+order: 10000

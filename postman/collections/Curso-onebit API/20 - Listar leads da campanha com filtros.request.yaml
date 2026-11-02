@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns/{{campaignId}}/leads?page=1&pageSize=10&name={{leadName}}&status=New&sortBy=name&order=asc"
+method: GET
+queryParams:
+  page: "1"
+  pageSize: "10"
+  name: "{{leadName}}"
+  status: New
+  sortBy: name
+  order: asc
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Combina campanha, status, nome e paginação', function () {
+          pm.response.to.have.status(200);
+          const result = pm.response.json();
+          pm.expect(result.meta.total).to.eql(1);
+          pm.expect(result.meta.page).to.eql(1);
+          pm.expect(result.leads).to.have.length(1);
+          const lead = result.leads[0];
+          pm.expect(lead.id).to.eql(Number(pm.collectionVariables.get('leadId')));
+          pm.expect(lead.campaigns.some((item) => item.campaignId === Number(pm.collectionVariables.get('campaignId')) && item.status === 'New')).to.eql(true);
+      });
+    language: text/javascript
+order: 21000

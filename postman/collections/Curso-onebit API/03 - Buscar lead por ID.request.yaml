@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads/{{leadId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Retorna o lead criado', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('leadId')));
+      });
+    language: text/javascript
+order: 4000

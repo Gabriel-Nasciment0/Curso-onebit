@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads?page=1&pageSize=10&name={{leadName}}&sortBy=name&order=asc"
+method: GET
+queryParams:
+  page: "1"
+  pageSize: "10"
+  name: "{{leadName}}"
+  sortBy: name
+  order: asc
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Lista leads e retorna metadados de paginação', function () {
+          pm.response.to.have.status(200);
+          const result = pm.response.json();
+          pm.expect(result.leads).to.be.an('array');
+          pm.expect(result.meta).to.include({ page: 1, pageSize: 10 });
+          pm.expect(result.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(true);
+      });
+    language: text/javascript
+order: 3000

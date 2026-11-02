@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{groupName}}",
+      "description": "Grupo criado pela coleção de testes Postman"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Cria grupo', function () {
+          pm.response.to.have.status(201);
+          const group = pm.response.json();
+          pm.expect(group).to.have.property('id');
+          pm.expect(group.name).to.eql(pm.collectionVariables.get('groupName'));
+          pm.collectionVariables.set('groupId', String(group.id));
+      });
+    language: text/javascript
+order: 8000

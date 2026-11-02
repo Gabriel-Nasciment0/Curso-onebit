@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads/{{leadId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Exclui lead sem associações pendentes', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().deletedLead.id).to.eql(Number(pm.collectionVariables.get('leadId')));
+      });
+    language: text/javascript
+order: 26000

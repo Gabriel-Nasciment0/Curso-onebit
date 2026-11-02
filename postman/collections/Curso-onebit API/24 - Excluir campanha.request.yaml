@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns/{{campaignId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Exclui campanha sem associações pendentes', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().deletedCampaign.id).to.eql(Number(pm.collectionVariables.get('campaignId')));
+      });
+    language: text/javascript
+order: 25000

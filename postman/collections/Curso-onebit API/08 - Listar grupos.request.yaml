@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Lista grupos', function () {
+          pm.response.to.have.status(200);
+          const groups = pm.response.json();
+          pm.expect(groups).to.be.an('array');
+          pm.expect(groups.some((group) => group.id === Number(pm.collectionVariables.get('groupId')))).to.eql(true);
+      });
+    language: text/javascript
+order: 9000

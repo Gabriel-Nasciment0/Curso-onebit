@@ -1,0 +1,12 @@
+$kind: collection
+description: Testes de integração da API Express. Execute a coleção em ordem usando o Collection Runner.
+variables:
+  baseUrl: http://localhost:3000
+  runId: ""
+  leadId: ""
+  groupId: ""
+  campaignId: ""
+  leadName: ""
+  leadEmail: ""
+  groupName: ""
+  campaignName: ""

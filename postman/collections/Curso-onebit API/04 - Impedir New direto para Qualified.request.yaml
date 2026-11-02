@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads/{{leadId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "Qualified"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Aplica a regra de ciclo de vida do lead', function () {
+          pm.response.to.have.status(400);
+          pm.expect(pm.response.json().message).to.be.a('string');
+      });
+    language: text/javascript
+order: 5000

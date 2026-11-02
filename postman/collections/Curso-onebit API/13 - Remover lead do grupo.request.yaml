@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups/{{groupId}}/leads/{{leadId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Remove associação do grupo', function () {
+          pm.response.to.have.status(200);
+          const group = pm.response.json();
+          pm.expect(group.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(false);
+      });
+    language: text/javascript
+order: 14000

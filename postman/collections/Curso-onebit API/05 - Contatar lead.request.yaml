@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/api/leads/{{leadId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "Contacted"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Permite a transição New para Contacted', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().status).to.eql('Contacted');
+      });
+    language: text/javascript
+order: 6000

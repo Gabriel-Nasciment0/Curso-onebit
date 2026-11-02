@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Lista campanhas', function () {
+          pm.response.to.have.status(200);
+          const campaigns = pm.response.json();
+          pm.expect(campaigns).to.be.an('array');
+          pm.expect(campaigns.some((campaign) => campaign.id === Number(pm.collectionVariables.get('campaignId')))).to.eql(true);
+      });
+    language: text/javascript
+order: 17000

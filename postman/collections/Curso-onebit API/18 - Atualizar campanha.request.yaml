@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns/{{campaignId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "description": "Descrição atualizada pelo Postman"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Atualiza a descrição da campanha', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json().description).to.eql('Descrição atualizada pelo Postman');
+      });
+    language: text/javascript
+order: 19000

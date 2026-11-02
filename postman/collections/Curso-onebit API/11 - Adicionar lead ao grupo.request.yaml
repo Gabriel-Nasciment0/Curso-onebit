@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/groups/{{groupId}}/leads"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "leadId": {{leadId}}
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Associa lead ao grupo', function () {
+          pm.response.to.have.status(201);
+          const group = pm.response.json();
+          pm.expect(group.leads.some((lead) => lead.id === Number(pm.collectionVariables.get('leadId')))).to.eql(true);
+      });
+    language: text/javascript
+order: 12000

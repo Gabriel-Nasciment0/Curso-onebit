@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{campaignName}}",
+      "description": "Campanha criada pela coleção de testes Postman",
+      "startDate": "2026-01-01T00:00:00.000Z"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Cria campanha', function () {
+          pm.response.to.have.status(200);
+          const campaign = pm.response.json();
+          pm.expect(campaign).to.have.property('id');
+          pm.expect(campaign.name).to.eql(pm.collectionVariables.get('campaignName'));
+          pm.collectionVariables.set('campaignId', String(campaign.id));
+      });
+    language: text/javascript
+order: 16000

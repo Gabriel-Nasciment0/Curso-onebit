@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/api/campaigns/{{campaignId}}/leads/{{leadId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "Engaged"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Atualiza status da associação', function () {
+          pm.response.to.have.status(200);
+          pm.expect(pm.response.json()).to.include({
+              campaignId: Number(pm.collectionVariables.get('campaignId')),
+              leadId: Number(pm.collectionVariables.get('leadId')),
+              status: 'Engaged'
+          });
+      });
+    language: text/javascript
+order: 22000
