@@ -1,8 +1,18 @@
 import { Category } from "./Category"
 import { Course } from "./Course"
 
-Category.hasMany(Course)
+// Uma categoria possui vários cursos
+Category.hasMany(Course, {
+    foreignKey: "categoryId",
+    onUpdate: "CASCADE",
+    onDelete: "RESTRICT",
+})
 
-Course.belongsTo(Category)
+// Um curso pertence a uma categoria
+Course.belongsTo(Category, {
+    foreignKey: "categoryId",
+    onUpdate: "CASCADE",
+    onDelete: "RESTRICT",
+})
 
-export { Course, Category }
+export { Category, Course }

@@ -1,17 +1,26 @@
 import { sequelize } from "../database"
 import { DataTypes, Model, Optional } from "sequelize"
-// intergfaces para definir o objeto
+
+// Interfaces para definir o objeto
 export interface Category {
     id: number
     name: string
     position: number
+    createdAt: Date
+    updatedAt: Date
 }
-// atributos para criação de um novo objeto
-export interface CategoryCreationAttributes extends Optional<Category, "id"> {}
-// atributos para atualização de um objeto
+
+// Atributos para criação de um novo objeto
+export interface CategoryCreationAttributes extends Optional<
+    Category,
+    "id" | "createdAt" | "updatedAt"
+> {}
+
+// Atributos para atualização de um objeto
 export interface CategoryInstance
     extends Model<Category, CategoryCreationAttributes>, Category {}
-//modulo de definição do objeto
+
+// Módulo de definição do objeto
 export const Category = sequelize.define<CategoryInstance, Category>(
     "Category",
     {
@@ -21,16 +30,26 @@ export const Category = sequelize.define<CategoryInstance, Category>(
             primaryKey: true,
             type: DataTypes.INTEGER,
         },
+
         name: {
             allowNull: false,
             type: DataTypes.STRING,
-            field: "name",
         },
+
         position: {
             allowNull: false,
             type: DataTypes.INTEGER,
-            field: "position",
+        },
+
+        createdAt: {
+            type: DataTypes.DATE,
+        },
+
+        updatedAt: {
+            type: DataTypes.DATE,
         },
     },
+    {
+        tableName: "categories",
+    },
 )
-

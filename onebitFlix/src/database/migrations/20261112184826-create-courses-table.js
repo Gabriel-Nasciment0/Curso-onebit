@@ -9,32 +9,46 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.DataTypes.INTEGER,
             },
+
             name: {
                 allowNull: false,
                 type: Sequelize.DataTypes.STRING,
             },
+
             synopsis: {
                 allowNull: false,
                 type: Sequelize.DataTypes.TEXT,
             },
+
             thumbnail_url: {
+                allowNull: true,
                 type: Sequelize.DataTypes.STRING,
             },
+
             featured: {
+                allowNull: false,
                 defaultValue: false,
                 type: Sequelize.DataTypes.BOOLEAN,
             },
+
             category_id: {
                 allowNull: false,
                 type: Sequelize.DataTypes.INTEGER,
-                references: { model: "categories", key: "id" },
+
+                references: {
+                    model: "categories",
+                    key: "id",
+                },
+
                 onUpdate: "CASCADE",
                 onDelete: "RESTRICT",
             },
+
             created_at: {
                 allowNull: false,
                 type: Sequelize.DataTypes.DATE,
             },
+
             updated_at: {
                 allowNull: false,
                 type: Sequelize.DataTypes.DATE,
@@ -42,7 +56,7 @@ module.exports = {
         })
     },
 
-    async down(queryInterface, Sequelize) {
+    async down(queryInterface) {
         await queryInterface.dropTable("courses")
     },
 }

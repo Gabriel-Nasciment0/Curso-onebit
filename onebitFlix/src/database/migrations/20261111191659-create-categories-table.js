@@ -9,18 +9,22 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.DataTypes.INTEGER,
             },
+
             name: {
                 allowNull: false,
                 type: Sequelize.DataTypes.STRING,
             },
+
             position: {
                 allowNull: false,
                 type: Sequelize.DataTypes.INTEGER,
             },
+
             created_at: {
                 allowNull: false,
                 type: Sequelize.DataTypes.DATE,
             },
+
             updated_at: {
                 allowNull: false,
                 type: Sequelize.DataTypes.DATE,
@@ -28,7 +32,7 @@ module.exports = {
         })
     },
 
-    async down(queryInterface, Sequelize) {
+    async down(queryInterface) {
         await queryInterface.dropTable("categories")
     },
 }

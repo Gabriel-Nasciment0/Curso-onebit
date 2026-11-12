@@ -1,16 +1,16 @@
-// src/adminjs/resources/course.ts
-
 import { ResourceOptions } from "adminjs"
 
 export const courseResourceOptions: ResourceOptions = {
     navigation: "Catálogo",
+
     editProperties: [
         "name",
         "synopsis",
-        "uploadThumbnail",
+        "thumbnailUrl",
         "featured",
         "categoryId",
     ],
+
     filterProperties: [
         "name",
         "synopsis",
@@ -19,7 +19,9 @@ export const courseResourceOptions: ResourceOptions = {
         "createdAt",
         "updatedAt",
     ],
+
     listProperties: ["id", "name", "featured", "categoryId"],
+
     showProperties: [
         "id",
         "name",
