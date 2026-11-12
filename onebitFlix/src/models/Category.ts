@@ -24,10 +24,13 @@ export const Category = sequelize.define<CategoryInstance, Category>(
         name: {
             allowNull: false,
             type: DataTypes.STRING,
+            field: "name",
         },
         position: {
             allowNull: false,
             type: DataTypes.INTEGER,
+            field: "position",
         },
     },
 )
+
